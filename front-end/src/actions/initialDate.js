@@ -1,10 +1,10 @@
 // IMPORT API EXTERNAL
-import { getInitialData } from '../app/api/example-api'
+import { getInitialData } from '../app/api/postApi'
 
 // IMPORT LOADING-REDUX
 import { showLoading, hideLoading } from 'react-redux-loading'
 
-
+const USER = 'matheus'
 
 export const RECEIVE_DATA = 'RECEIVE_DATA'
 
@@ -23,7 +23,7 @@ export function handleInitialData() {
 
     dispatch(showLoading())
 
-    return getInitialData()
+    return getInitialData(USER)
       .then( ({ users }) => {
 
         dispatch(receiveData(users))
