@@ -1,7 +1,6 @@
-// import Dashboard from './Dashboard'
-// import Tweet from './Tweet'
+import Posts from './Posts'
 
-// export {
-//   Dashboard,
-//   Tweet
-// }
+export {
+    Posts,
+
+}
