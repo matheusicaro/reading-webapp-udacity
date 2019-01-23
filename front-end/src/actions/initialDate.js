@@ -8,10 +8,10 @@ const USER = 'matheus'
 
 export const RECEIVE_DATA = 'RECEIVE_DATA'
 
-function receiveData(users) {
+function receiveData(posts) {
   return {
     type: RECEIVE_DATA,
-    users
+    posts
   }
 }
 
@@ -24,9 +24,9 @@ export function handleInitialData() {
     dispatch(showLoading())
 
     return getInitialData(USER)
-      .then( ({ users }) => {
+      .then( ({posts}) => {
 
-        dispatch(receiveData(users))
+        dispatch(receiveData(posts))
 
         dispatch(hideLoading())
       })

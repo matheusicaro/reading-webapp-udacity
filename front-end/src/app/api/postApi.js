@@ -8,9 +8,7 @@ export function getInitialData(user) {
     return Promise.all([
         API._get(url, path, user),
 
-    ]).then(([users]) => ({
-        users,
-    }))
+    ]).then(([posts]) =>  ({ posts }))
 }
 
 
