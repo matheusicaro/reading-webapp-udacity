@@ -4,21 +4,20 @@ import { connect } from 'react-redux'
 import { Posts } from '../../components'
 
 export class Home extends Component {
-
-  render() {
-    const { posts } = this.props.posts;
+  render () {
+    const { posts } = this.props.posts
 
     return (
       <Fragment>
-          <Posts posts={posts} />
+        <Posts posts={posts} />
       </Fragment>
     )
   }
 }
 
-function mapStateToProps({ posts }) {
+function mapStateToProps ({ posts }) {
   return {
-    posts,
+    posts
   }
 }
 
