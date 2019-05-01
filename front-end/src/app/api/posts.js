@@ -13,8 +13,8 @@ const InitialData = () => {
   }
 
   return request.get(options)
-    .then(response => console.log(response))
-    .catch(error => console.log(error))
+    .then(response => response)
+    .catch(error => `Error: ${error.message}`)
 }
 
 export default InitialData

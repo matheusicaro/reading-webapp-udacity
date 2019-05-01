@@ -1,19 +1,7 @@
-import { combineReducers } from 'redux'
-import { loadingBarReducer } from 'react-redux-loading'
+import { routerReducer } from 'react-router-redux'
 import { posts } from './posts'
 
-export default combineReducers({
-  loadingBar: loadingBarReducer,
+export default {
+  router: routerReducer,
   posts
-})
-
-/*
-*         REDUCER
-*
-*   Aqui é repassado os reducers que vao adicionar à Store
-*
-*   Cada reducer será resposavel por execultar uma ação no State
-*
-*   da  Store.
-*
-*/
+}

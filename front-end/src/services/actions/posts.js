@@ -1,18 +1,18 @@
-import { POSTS } from '../uteis/constants'
+import { ACTIONS } from '../../app/uteis/constants'
 import { InitialData as getInitialData } from '../../app/api'
-import { dispatchApi } from '../actions/dispatch'
+import { dispatchApi } from '../../app/uteis'
 
-const receiveData = (posts) => {
+const receiveData = payload => {
   return {
-    type: POSTS.ACTIONS.INITIAL_DATA,
-    posts
+    type: ACTIONS.POSTS.INITIAL_DATA,
+    payload
   }
 }
 
-// TODO: O SEGREDO ESTÁ NA CHAMADA QUE É PASSADA, TEM QUE TER O DISPATCH
-// CONSULTAR CODIGO ANTIGO PARA COMPARAR E ENTEDER QUANDO O DISPATCH CHEGA, E ONDE
-const initialData = (dispatch) => dispatchApi(dispatch, getInitialData, receiveData)
+const initialData = dispatch => {
+  return dispatchApi(dispatch, getInitialData, receiveData)
+}
 
-export const Posts = {
+export const Post = {
   initialData
 }
