@@ -1,14 +1,13 @@
-import { ACTIONS } from '../../app/uteis/constants'
+import { POSTS } from '../../app/uteis/constants/actions'
 
-export const posts = (state = {}, action) => {
+export const posts = (state = null, action) => {
   switch (action.type) {
-    case ACTIONS.POSTS.INITIAL_DATA :
-      console.log(action.payload)
+    case POSTS.INITIAL_DATA:
       return {
         ...state,
         ...action.payload
       }
-    default :
+    default:
       return state
   }
 }

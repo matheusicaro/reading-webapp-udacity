@@ -1,4 +1,4 @@
-import HomeScene from '../../scenes/home/Home'
+import HomeScene from '../../scenes/home/Home.container'
 // import HomeScene from '../../scenes/home'
 
 import { replace } from 'react-router-redux'
@@ -13,14 +13,14 @@ export const ROUTES = {
     title: 'Home',
     scene: HomeScene
   }
-//   LOGIN: {
-//     path: `/login`,
-//     title: 'Login',
-//     scene: LoginScene,
-//   },
-//   CREATEPRODUCT: {
-//     path: `/create-product`,
-//     title: 'Create Product',
-//     scene: CreateProductScene,
-//   },
+  //   LOGIN: {
+  //     path: `/login`,
+  //     title: 'Login',
+  //     scene: LoginScene,
+  //   },
+  //   CREATEPRODUCT: {
+  //     path: `/create-product`,
+  //     title: 'Create Product',
+  //     scene: CreateProductScene,
+  //   },
 }

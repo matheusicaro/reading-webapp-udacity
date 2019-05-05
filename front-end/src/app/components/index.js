@@ -1,6 +1,7 @@
-import Posts from './Posts'
+import Post from './post/Post'
+import Dashboard from './Dashboard'
 
 export {
-  Posts
-
+  Dashboard,
+  Post
 }

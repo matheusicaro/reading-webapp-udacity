@@ -1,0 +1,16 @@
+.post-content {
+    margin: 5% 0%;
+    display: grid;
+    padding: 3%;
+    grid-gap: 10px;
+}
+
+.post-content-line {
+    border: solid;
+}
+
+.post-content-iten-footer {
+    display: grid;
+    grid-auto-flow: column;
+}
+
