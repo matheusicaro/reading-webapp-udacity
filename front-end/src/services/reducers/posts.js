@@ -7,6 +7,11 @@ export const posts = (state = null, action) => {
         ...state,
         ...action.payload
       }
+    case POSTS.CHANGE_VOTE.upVote || POSTS.CHANGE_VOTE.downVote:
+      return {
+        ...state
+        // ...action.payload
+      }
     default:
       return state
   }

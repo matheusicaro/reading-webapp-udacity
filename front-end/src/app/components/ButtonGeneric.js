@@ -4,7 +4,6 @@ import SvgIcon from '@material-ui/core/SvgIcon'
 
 export const ButtonGeneric = ({ onclick, data }) => {
   const { button, optionalContent } = data
-
   const handleClick = (event) => {
     event.preventDefault()
     onclick(button.action, optionalContent)

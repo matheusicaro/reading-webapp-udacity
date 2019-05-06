@@ -3,12 +3,14 @@ import { connect } from 'react-redux'
 import { Post } from '../../../services/actions'
 import Home from './Home.component'
 import { POSTS } from '../../uteis/constants/actions'
+import { updateScorePost } from '../../uteis'
 
 class HomeScene extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      posts: null
+      posts: null,
+      menuDotsIsOpen: false
     }
   }
 
@@ -21,17 +23,15 @@ class HomeScene extends Component {
   }
 
   handleClick = (action, postId) => {
-    // TODO: Usar o loadsh para navergar nos objetos e filtrar o ID que tenho que acrescentar ou decrementar o SCORE
-    // dos buttons
-
-    // if (action === POSTS.CHANGE_VOTE.UP_VOTE) {
-    //   const post = this.state.posts.filter(post => post.id === postId)
-    //   this.setState()
-    // }
-    // if (action === POSTS.CHANGE_VOTE.DOWN_VOTE) {
-    //   console.log(this.state)
-    //   // this.props.dispatch(Post.changeDownVote)
-    // }
+    if (action === POSTS.CHANGE_VOTE.upVote || action === POSTS.CHANGE_VOTE.downVote) {
+      // Deverá atualizar o state do componente a depois o dispatch para alterar na API.
+      // Se ocorrer Error no dispatch, o state é atualizado para o estado anterior através da Store.
+      let { posts } = this.state
+      posts = updateScorePost(posts, action, postId)
+      this.setState({ ...this.state, posts })
+      this.props.dispatch(Post.updatePostScore(action, postId))
+      //
+    }
   }
 
   render () {

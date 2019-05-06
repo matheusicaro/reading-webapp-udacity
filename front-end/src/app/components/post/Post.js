@@ -1,21 +1,26 @@
 import React from 'react'
+
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import { ButtonGeneric } from '../buttons'
+
+import { ButtonGeneric as Button, MenuGeneric as Menu } from '../'
 import loadsh from 'lodash'
 import { BUTTONS } from '../../uteis/constants/buttons'
 
 import './style.css'
 
-const Post = ({ post, onclick }) => {
+export const Post = ({ post, onclick }) => {
   const date = new Date(post.timestamp)
 
   return (
     <Paper className='post-content' elevation={1}>
-      <div>
+      <div className='post-content-title'>
         <Typography variant='h5' component='h3'>
           {post.title}
         </Typography>
+        <span className='post-content-title-button'>
+          <Menu button={BUTTONS.MENU.MENU_DOTS} />
+        </span>
       </div>
       <span className='post-content-line' />
       <div>
@@ -29,9 +34,9 @@ const Post = ({ post, onclick }) => {
       <div className='post-content-iten-footer'>
         <div>
           <Typography component='p'>
-            <ButtonGeneric onclick={onclick} data={{ button: BUTTONS.POST.UP_VOTE, optionalContent: post.id }} />
+            <Button onclick={onclick} data={{ button: BUTTONS.POST.UP_VOTE, optionalContent: post.id }} />
             <span style={{ margin: '0% 5%' }}>{post.voteScore}</span>
-            <ButtonGeneric onclick={onclick} data={{ button: BUTTONS.POST.DOWN_VOTE, optionalContent: post.id }} />
+            <Button onclick={onclick} data={{ button: BUTTONS.POST.DOWN_VOTE, optionalContent: post.id }} />
           </Typography>
         </div>
 
@@ -45,8 +50,5 @@ const Post = ({ post, onclick }) => {
       </div>
 
     </Paper>
-
   )
 }
-
-export default Post

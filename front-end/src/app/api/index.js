@@ -1,2 +1,1 @@
-import InitialData from './posts'
-export { InitialData }
+export * from './posts'

@@ -1,24 +1,27 @@
 import { POSTS } from '../../app/uteis/constants/actions'
-import { InitialData as getInitialData } from '../../app/api'
+import { InitialData as getInitialData, updateScore } from '../../app/api'
 import { dispatchApi } from '../../app/uteis'
 
-const receiveData = payload => {
+const downVote = payload => {
+  console.log('payload - updateScore>', payload)
   return {
-    type: POSTS.INITIAL_DATA,
+    type: POSTS.CHANGE_VOTE.upVote,
     payload
   }
 }
 
 const upVote = payload => {
+  console.log('payload - updateScore>', payload)
   return {
-    type: POSTS.CHANGE_VOTE.UP_VOTE,
+    type: POSTS.CHANGE_VOTE.downVote,
     payload
   }
 }
 
-const downVote = payload => {
+const receiveData = payload => {
+  console.log('payload - receiveData>', payload)
   return {
-    type: POSTS.CHANGE_VOTE.DOWN_VOTE,
+    type: POSTS.INITIAL_DATA,
     payload
   }
 }
@@ -27,18 +30,12 @@ const initialData = dispatch => {
   return dispatchApi(dispatch, getInitialData, receiveData)
 }
 
-const changeUpVote = dispatch => {
-  console.log('changeUpVote', upVote)
-  // return dispatchApi(dispatch, getInitialData, changeVoteUpOrDown(action))
-}
-
-const changeDownVote = dispatch => {
-  console.log('changeDownVote', downVote)
-  // return dispatchApi(dispatch, getInitialData, changeVoteUpOrDown(action))
+const updatePostScore = (action, postId) => dispatch => {
+  return dispatchApi(dispatch, updateScore, (
+    action === POSTS.CHANGE_VOTE.upVote ? upVote : downVote), { action, postId })
 }
 
 export const Post = {
   initialData,
-  changeUpVote,
-  changeDownVote
+  updatePostScore
 }
