@@ -1,5 +1,5 @@
-import HomeScene from '../../scenes/home/Home.container'
-// import HomeScene from '../../scenes/home'
+import { HomeScene } from '../pages'
+// import HomeScene from '../../pages/home'
 
 import { replace } from 'react-router-redux'
 

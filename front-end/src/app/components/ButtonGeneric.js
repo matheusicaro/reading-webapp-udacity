@@ -9,7 +9,7 @@ export const ButtonGeneric = ({ onclick, data }) => {
     onclick(button.action, optionalContent)
   }
   return (
-    <Button style={{ 'min-width': '0px' }} onClick={handleClick}>
+    <Button style={{ 'minWidth': '0px' }} onClick={handleClick}>
       <SvgIcon>
         <path d={button.icon} />
       </SvgIcon>

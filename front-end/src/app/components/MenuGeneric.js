@@ -6,36 +6,40 @@ import Button from '@material-ui/core/Button'
 import SvgIcon from '@material-ui/core/SvgIcon'
 
 const defaultItems = [
-  { text: 'element-1', action: console.log('element-1') },
-  { text: 'element-2', action: console.log('element-2') },
-  { text: 'element-3', action: console.log('element-3') }
+  { text: 'element-1', action: 'call dispatch' },
+  { text: 'element-2', action: 'call dispatch' },
+  { text: 'element-3', action: 'call dispatch' }
 ]
 
-export const MenuGeneric = ({ button = {}, items = defaultItems }) => {
+export const MenuGeneric = ({ button = {}, items = defaultItems, selectOnClick = {} }) => {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [anchorEl, setAnchorEl] = useState(false)
+  const [anchorEl, setAnchorEl] = useState({})
 
-  const handleClick = (event) => {
+  const menuHandleClick = (event) => {
     setMenuOpen(!menuOpen)
     setAnchorEl(event.currentTarget)
   }
 
+  const itemHandleClick = (event) => {
+    const action = event.target.innerText
+    selectOnClick(action)
+    // setMenuOpen(!menuOpen)
+    // setAnchorEl(event.currentTarget)
+  }
+
   return (
     <React.Fragment>
-      <Button style={{ 'min-width': '0px' }} onClick={handleClick}>
+      <Button style={{ 'minWidth': '0px' }} onClick={menuHandleClick}>
         <SvgIcon>
           <path d={button.icon} />
         </SvgIcon>
       </Button>
       <Menu
-        getContentAnchorEl={null}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
         anchorEl={anchorEl}
         open={menuOpen}
-        onClose={handleClick}
+        onClose={menuHandleClick}
       >
-        {items.map(item => <MenuItem onClick={item.action}>{item.text}</MenuItem>)}
+        {items.map(item => <MenuItem key={item.text} onClick={itemHandleClick}>{item.text}</MenuItem>)}
       </Menu>
     </React.Fragment>
   )

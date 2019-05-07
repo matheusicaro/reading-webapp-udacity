@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Route, Switch } from 'react-router'
-import { ROUTES } from './uteis/constants'
+import { ROUTES } from './constants'
 
 const App = () => (
   <Switch>

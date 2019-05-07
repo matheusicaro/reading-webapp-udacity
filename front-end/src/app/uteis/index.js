@@ -1,3 +1,3 @@
 export * from './store'
 export * from './actions'
-export * from './home.container'
+export * from './home'

@@ -1,13 +1,13 @@
-import { POSTS } from '../../app/uteis/constants/actions'
+import { POST } from '../../app/constants/actions'
 
 export const posts = (state = null, action) => {
   switch (action.type) {
-    case POSTS.INITIAL_DATA:
+    case POST.INITIAL_DATA:
       return {
         ...state,
         ...action.payload
       }
-    case POSTS.CHANGE_VOTE.upVote || POSTS.CHANGE_VOTE.downVote:
+    case POST.CHANGE_VOTE.upVote || POST.CHANGE_VOTE.downVote:
       return {
         ...state
         // ...action.payload

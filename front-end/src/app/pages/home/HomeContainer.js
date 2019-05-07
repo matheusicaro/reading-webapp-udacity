@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Post } from '../../../services/actions'
-import Home from './Home.component'
-import { POSTS } from '../../uteis/constants/actions'
+import Home from './Home'
+import { POST } from '../../constants/actions'
 import { updateScorePost } from '../../uteis'
 
 class HomeScene extends Component {
@@ -23,7 +23,7 @@ class HomeScene extends Component {
   }
 
   handleClick = (action, postId) => {
-    if (action === POSTS.CHANGE_VOTE.upVote || action === POSTS.CHANGE_VOTE.downVote) {
+    if (action === POST.CHANGE_VOTE.upVote || action === POST.CHANGE_VOTE.downVote) {
       // Deverá atualizar o state do componente a depois o dispatch para alterar na API.
       // Se ocorrer Error no dispatch, o state é atualizado para o estado anterior através da Store.
       let { posts } = this.state

@@ -1,21 +1,21 @@
-.post-content {
+.card-content {
     display: grid;
     width: 50%;
     padding: 3%;
     grid-gap: 10px;
 }
 
-.post-content-title-button {
+.card-content-title-button {
     max-width: 20%;
     justify-self: end;
 }
 
-.post-content-line {
+.card-content-line {
     border: solid;
 }
 
-.post-content-title,
-.post-content-iten-footer {
+.card-content-title,
+.card-content-iten-footer {
     display: grid;
     grid-auto-flow: column;
 }
