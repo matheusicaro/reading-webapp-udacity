@@ -18,7 +18,7 @@ export const Card = ({ card, onclick, menuDots, buttons }) => {
           {card.title}
         </Typography>
         <span className='card-content-title-button'>
-          <Menu button={menuDots.button} items={menuDots.items} selectOnClick={onclick} />
+          <Menu button={menuDots.button} items={menuDots.items} selectOnClick={onclick} cardId={card.id} />
         </span>
       </div>
       <span className='card-content-line' />

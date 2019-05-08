@@ -1,6 +1,13 @@
 import { POST } from '../../app/constants/actions'
-import { InitialData as getInitialData, updateScore } from '../../app/api'
+import { initialDataApi, updateScoreApi, deletePostApi } from '../../app/api'
 import { dispatchApi } from '../../app/uteis'
+
+const deletePostId = payload => {
+  return {
+    type: POST.DELETE,
+    payload
+  }
+}
 
 const downVote = payload => {
   return {
@@ -24,15 +31,25 @@ const receiveData = payload => {
 }
 
 const initialData = dispatch => {
-  return dispatchApi(dispatch, getInitialData, receiveData)
+  return dispatchApi(dispatch, initialDataApi, receiveData)
 }
 
-const updatePostScore = (action, postId) => dispatch => {
-  return dispatchApi(dispatch, updateScore, (
+const updateScore = (action, postId) => dispatch => {
+  return dispatchApi(dispatch, updateScoreApi, (
     action === POST.CHANGE_VOTE.upVote ? upVote : downVote), { action, postId })
+}
+
+const deletePost = (postId, posts) => dispatch => {
+  return deletePostApi(postId)
+    .then(response => dispatch(deletePostId(postId)))
+    .catch(error => {
+      window.alert('ERROR NO CONSOLE')
+      console.log(error)
+    })
 }
 
 export const Post = {
   initialData,
-  updatePostScore
+  updateScore,
+  delete: deletePost
 }

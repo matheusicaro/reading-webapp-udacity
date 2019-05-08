@@ -1,3 +1,3 @@
-export * from './store'
-export * from './actions'
-export * from './home'
+export * from './StoreUteis'
+export * from './ActionsUteis'
+export * from './HomeUteis'

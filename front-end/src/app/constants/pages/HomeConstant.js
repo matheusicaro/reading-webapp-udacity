@@ -13,7 +13,7 @@ export const HOME = {
           },
           items: [
             {
-              action: 'Editar',
+              action: POST.EDIT,
               text: 'Editar'
             },
             {
