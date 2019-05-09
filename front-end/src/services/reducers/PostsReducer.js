@@ -1,5 +1,5 @@
 import { POST } from '../../app/constants/actions'
-import { deletePostInState } from '../../app/uteis/HomeUteis'
+import { deletePostInState, updatePostsInState } from '../../app/uteis/PostReducerUteis'
 
 export const posts = (state = null, action) => {
   switch (action.type) {
@@ -8,17 +8,15 @@ export const posts = (state = null, action) => {
         ...state,
         ...action.payload
       }
-    case POST.CHANGE_VOTE.upVote || POST.CHANGE_VOTE.downVote:
-      console.log('estate', state)
+    case POST.CHANGE_VOTE[action.type]:
+      const newState = updatePostsInState(state, action.payload)
       return {
-        ...state,
-        ...action.payload
+        ...newState
       }
     case POST.DELETE:
       const newPosts = deletePostInState(state, action.payload)
-      console.log(newPosts)
       return {
-        posts: newPosts
+        ...newPosts
       }
     default:
       return state

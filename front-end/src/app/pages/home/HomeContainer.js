@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Post } from '../../../services/actions'
 import Home from './Home'
 import { POST } from '../../constants/actions'
-import { updatePostsInState, deletePostInState } from '../../uteis'
 
 class HomeScene extends Component {
   constructor (props) {
@@ -26,19 +25,10 @@ class HomeScene extends Component {
     if (
       action === POST.CHANGE_VOTE.upVote ||
       action === POST.CHANGE_VOTE.downVote
-    ) {
-      // Deverá atualizar o state do componente a depois o dispatch para alterar na API.
-      // Se ocorrer Error no dispatch, o state é atualizado para o estado anterior através da Store.
-      let { posts } = this.state
-      posts = updatePostsInState(posts, action, postId)
-      this.setState({ ...this.state, posts })
-      this.props.dispatch(Post.updateScore(action, postId))
-      //
-    } else if (action === POST.DELETE) {
-      // const newPosts = deletePostInState(this.state.post, postId)
-      // this.setState({ ...this.state, posts: newPosts })
-      this.props.dispatch(Post.delete(postId), this.state.posts)
-    } else if (action === POST.EDIT) console.log(action, postId)
+    ) this.props.dispatch(Post.updateScore(action, postId))
+
+    else if (action === POST.DELETE) this.props.dispatch(Post.delete(postId), this.state.posts)
+    else if (action === POST.EDIT) console.log('ESTOU NO CONTROLLER')
   };
 
   render () {

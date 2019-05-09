@@ -1,6 +1,6 @@
 import { POST } from '../../app/constants/actions'
 import { initialDataApi, updateScoreApi, deletePostApi } from '../../app/api'
-import { dispatchApi } from '../../app/uteis'
+import { DispatchUteis } from '../../app/uteis'
 
 const deletePostId = payload => {
   return {
@@ -11,14 +11,14 @@ const deletePostId = payload => {
 
 const downVote = payload => {
   return {
-    type: POST.CHANGE_VOTE.upVote,
+    type: POST.CHANGE_VOTE.downVote,
     payload
   }
 }
 
 const upVote = payload => {
   return {
-    type: POST.CHANGE_VOTE.downVote,
+    type: POST.CHANGE_VOTE.upVote,
     payload
   }
 }
@@ -31,21 +31,19 @@ const receiveData = payload => {
 }
 
 const initialData = dispatch => {
-  return dispatchApi(dispatch, initialDataApi, receiveData)
+  return DispatchUteis.withReturnApi(dispatch, initialDataApi, receiveData)
 }
 
 const updateScore = (action, postId) => dispatch => {
-  return dispatchApi(dispatch, updateScoreApi, (
-    action === POST.CHANGE_VOTE.upVote ? upVote : downVote), { action, postId })
+  const actionScore = action === POST.CHANGE_VOTE.upVote ? upVote : downVote
+  const data = { action, postId }
+  return DispatchUteis.withReturnApi(dispatch, updateScoreApi, actionScore, data)
 }
 
 const deletePost = (postId, posts) => dispatch => {
-  return deletePostApi(postId)
-    .then(response => dispatch(deletePostId(postId)))
-    .catch(error => {
-      window.alert('ERROR NO CONSOLE')
-      console.log(error)
-    })
+  const returnData = true
+  const data = postId
+  return DispatchUteis.withoutReturnApi(dispatch, deletePostApi, deletePostId, data, returnData)
 }
 
 export const Post = {

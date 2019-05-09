@@ -31,7 +31,6 @@ export const updateScoreApi = ({ action, postId }) => {
     },
     json: true
   }
-
   return request.post(options)
     .then(response => response)
     .catch(error => `Error: ${error.message}`)

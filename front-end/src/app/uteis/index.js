@@ -1,3 +1,3 @@
 export * from './StoreUteis'
-export * from './ActionsUteis'
-export * from './HomeUteis'
+export * from './DispatchUteis'
+export * from './PostReducerUteis'
