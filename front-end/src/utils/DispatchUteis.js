@@ -7,8 +7,8 @@ const withReturnApi = (dispatch, call, action, data) => {
       // dispatch(hideLoading())    INSERIR PAGINA DE LOADING AQUI QUANDO INICIAR UMA REQUISIÇÃO ASSINCRONA
     })
     .catch(error => {
-      window.alert('ERROR NO CONSOLE')
-      console.log(error)
+      // TODO: Erro lançando quando a API está desligada
+      if (error) { console.log(error); window.alert('API DESLIGADA') }
     })
 }
 
@@ -24,8 +24,9 @@ const withoutReturnApi = (
       dispatch(action(returnData ? data : null))
     })
     .catch(error => {
-      window.alert('ERROR NO CONSOLE')
+      console.log('------>')
       console.log(error)
+      console.log('<------')
     })
 }
 

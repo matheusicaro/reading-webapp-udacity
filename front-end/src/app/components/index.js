@@ -1,2 +1,2 @@
 export * from './ButtonGeneric'
-export * from './MenuGeneric'
+export * from './FormGeneric'

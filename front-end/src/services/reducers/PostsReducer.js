@@ -1,5 +1,5 @@
 import { POST } from '../../app/constants/actions'
-import { deletePostInState, updatePostsInState } from '../../app/uteis/PostReducerUteis'
+import { deletePostInState, updatePostsInState } from '../../utils/PostReducerUteis'
 
 export const posts = (state = null, action) => {
   switch (action.type) {

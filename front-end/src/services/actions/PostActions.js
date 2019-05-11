@@ -1,6 +1,6 @@
 import { POST } from '../../app/constants/actions'
-import { initialDataApi, updateScoreApi, deletePostApi } from '../../app/api'
-import { DispatchUteis } from '../../app/uteis'
+import { initialDataApi, updateScoreApi, deletePostApi } from '../api'
+import { DispatchUteis } from '../../utils'
 
 const deletePostId = payload => {
   return {

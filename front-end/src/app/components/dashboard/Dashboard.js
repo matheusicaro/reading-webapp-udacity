@@ -7,6 +7,7 @@ import './style.css'
 export const Dashboard = (props) => {
   let cards = lodash.valuesIn(props.cards)
   const { cardButtons } = props
+
   return (
     <div className='dashboard'>
       { cards.length !== 0 &&

@@ -3,7 +3,9 @@ import React from 'react'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
-import { ButtonGeneric as Button, MenuGeneric as Menu } from '..'
+import { ButtonGeneric as Button } from '../'
+import { MenuCard as Menu } from './'
+
 import loadsh from 'lodash'
 
 import './style.css'
@@ -33,9 +35,9 @@ export const Card = ({ card, onclick, menuDots, buttons }) => {
       <div className='card-content-iten-footer'>
         <div>
           <Typography component='p'>
-            <Button onclick={onclick} data={{ button: buttonVoteUp, optionalContent: card.id }} />
+            <Button onclick={onclick} button={buttonVoteUp} data={card.id} />
             <span style={{ margin: '0% 5%' }}>{card.voteScore}</span>
-            <Button onclick={onclick} data={{ button: buttonVoteDown, optionalContent: card.id }} />
+            <Button onclick={onclick} button={buttonVoteDown} data={card.id} />
           </Typography>
         </div>
 
