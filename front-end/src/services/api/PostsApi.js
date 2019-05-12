@@ -29,3 +29,10 @@ export const deletePostApi = postId => {
   const returnJson = false
   return requestApi.delete(options(pathUrl, body, returnJson))
 }
+
+export const editPostApi = ({ postId, dataUpdate }) => {
+  const pathUrl = `/posts/${postId}`
+  const body = dataUpdate
+  const returnJson = true
+  return requestApi.put(options(pathUrl, body, returnJson))
+}

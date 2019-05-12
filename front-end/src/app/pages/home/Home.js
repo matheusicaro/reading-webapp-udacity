@@ -17,23 +17,28 @@ const postButtonsMenu = {
     action: 'click',
     icon: menuDots
   },
+  // Items do menu que ao receber um click, tem opção de ação, e podem abrir um formulario.
   items: [
     {
       action: POST.EDIT,
       form: {
         data: {
-          title: 'teste',
-          fields: ['Campo 1', 'Campo 2', 'Campo 3']
+          title: 'Editar Postagem', // TODO: Translate
+          fields: [ // TODO: Translate
+            { label: 'Titulo', value: 'title' },
+            { label: 'Descrição', value: 'body' }
+          ]
         }
       },
-      text: 'Editar'
+      text: 'Editar' // TODO: Translate
     },
     {
       action: POST.DELETE,
-      text: 'Deletar'
+      text: 'Deletar' // TODO: Translate
     }
   ]
 }
+
 const postButtonsLikeDeslike = {
   buttonVoteUp: {
     action: POST.CHANGE_VOTE.upVote,
@@ -44,6 +49,7 @@ const postButtonsLikeDeslike = {
     icon: dislike
   }
 }
+
 const postButtons = {
   menuDots: postButtonsMenu,
   footer: postButtonsLikeDeslike

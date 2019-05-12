@@ -21,14 +21,14 @@ class HomeScene extends Component {
     if (this.state.posts === null) this.initialDate()
   }
 
-  handleClick = (action, postId) => {
+  handleClick = (action, postId, data) => {
     if (
       action === POST.CHANGE_VOTE.upVote ||
       action === POST.CHANGE_VOTE.downVote
     ) this.props.dispatch(Post.updateScore(action, postId))
 
-    else if (action === POST.DELETE) this.props.dispatch(Post.delete(postId), this.state.posts)
-    else if (action === POST.EDIT) console.log('ESTOU NO CONTROLLER')
+    else if (action === POST.DELETE) this.props.dispatch(Post.delete(postId))
+    else if (action === POST.EDIT) this.props.dispatch(Post.edit(postId, data))
   };
 
   render () {

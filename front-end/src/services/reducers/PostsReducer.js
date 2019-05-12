@@ -1,6 +1,8 @@
 import { POST } from '../../app/constants/actions'
 import { deletePostInState, updatePostsInState } from '../../utils/PostReducerUteis'
 
+let newState = {}
+
 export const posts = (state = null, action) => {
   switch (action.type) {
     case POST.INITIAL_DATA:
@@ -9,7 +11,7 @@ export const posts = (state = null, action) => {
         ...action.payload
       }
     case POST.CHANGE_VOTE[action.type]:
-      const newState = updatePostsInState(state, action.payload)
+      newState = updatePostsInState(state, action.payload)
       return {
         ...newState
       }
@@ -17,6 +19,11 @@ export const posts = (state = null, action) => {
       const newPosts = deletePostInState(state, action.payload)
       return {
         ...newPosts
+      }
+    case POST.EDIT:
+      newState = updatePostsInState(state, action.payload)
+      return {
+        ...newState
       }
     default:
       return state

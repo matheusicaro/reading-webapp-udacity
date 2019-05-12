@@ -32,6 +32,7 @@ export const MenuCard = ({
   const [menuOpen, setMenuOpen] = useState(false)
   const [formOpen, setFormOpen] = useState(false)
   const [formData, setFormData] = useState(null)
+  const [formAction, setAction] = useState(null)
   const [anchorEl, setAnchorEl] = useState({})
 
   const menuHandleClick = event => {
@@ -41,12 +42,16 @@ export const MenuCard = ({
 
   const itemHandleClick = item => {
     if (item.form) {
-      console.log('---aqui--->')
-      console.log(item.form)
-      console.log('<------')
       setFormData(item.form.data)
+      setAction(item.action)
       setFormOpen(!formOpen)
     } else selectOnClick(item.action, cardId)
+  }
+
+  const sendForm = data => {
+    setFormOpen(!formOpen)
+    selectOnClick(formAction, cardId, data)
+    // selectOnClick(item.action, cardId)
   }
 
   return (
@@ -64,7 +69,7 @@ export const MenuCard = ({
         ))}
       </Menu>
 
-      <Form formOpen={formOpen} formData={formData} />
+      <Form formOpen={formOpen} formClose={() => setFormOpen(!formOpen)} formData={formData} sendForm={sendForm} />
 
     </React.Fragment>
   )
