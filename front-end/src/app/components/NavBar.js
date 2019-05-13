@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 
-import { Router, Categories } from '../../utils'
+import { RouterUtils, CategoriesUtils } from '../../utils'
 // import { ROUTES } from '../../constants'
 
 const NavBar = (props) => {
@@ -15,7 +15,7 @@ const NavBar = (props) => {
 
   const parseCategories = (categories, navigate) => {
     if (typeof categories === 'object') {
-      categories = Categories.formartCategories(categories)
+      categories = CategoriesUtils.formartCategories(categories)
       return categories.map(category => (
         <Button key={category.name} color='inherit' onClick={event => navigate(event, category.path)}>
           { category.name }
@@ -45,7 +45,7 @@ const NavBar = (props) => {
   )
 }
 
-const mapDispatchToProps = dispatch => Router(dispatch)
+const mapDispatchToProps = dispatch => RouterUtils.Router(dispatch)
 
 export default withRouter(
   connect(

@@ -1,0 +1,12 @@
+.container {
+    width: 50%;
+    display: grid;
+    grid-template-columns: 20% 40%;
+    align-items: center;
+    align-content: center;
+    grid-gap: 10%;
+}
+
+.filter-by-post > div{
+    width: 100%;
+}

@@ -1,5 +1,9 @@
 import { replace } from 'react-router-redux'
 
-export const Router = dispatch => ({
+const Router = dispatch => ({
   navigate: route => dispatch(replace(route))
 })
+
+export const RouterUtils = {
+  Router
+}

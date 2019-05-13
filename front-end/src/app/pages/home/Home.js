@@ -3,7 +3,7 @@ import { Dashboard } from '../../components/dashboard'
 import NavBar from '../../components/NavBar'
 import { POST } from '../../constants/actions'
 
-import { like, dislike, menuDots, filter } from '../../assets/icons'
+import { like, dislike, menuDots } from '../../assets/icons'
 
 import './home.css'
 
@@ -15,7 +15,8 @@ const Home = props => {
         <Dashboard
           cards={props.posts}
           categories={props.categories}
-          onclick={props.onclick}
+          onClicksPost={props.onClicksPost}
+          onClicksFilter={props.onClicksFilter}
           cardButtons={postButtons}
         />
       </div>

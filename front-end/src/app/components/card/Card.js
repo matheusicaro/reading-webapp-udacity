@@ -13,6 +13,7 @@ import './style.css'
 export const Card = ({ card, onclick, menuDots, buttons }) => {
   const date = new Date(card.timestamp)
   const { buttonVoteUp, buttonVoteDown } = buttons
+
   return (
     <Paper className='card-content' elevation={1}>
       <div className='card-content-title'>

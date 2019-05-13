@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Post, Categories } from '../../../services/actions'
 import { POST } from '../../constants/actions'
+import { FILTER } from '../../constants'
+import { HomeUtils } from '../../../utils'
 
 import Home from './Home'
 
@@ -10,6 +12,7 @@ class HomePage extends Component {
     super(props)
     this.state = {
       posts: null,
+      filteredPosts: null,
       categories: null
     }
   }
@@ -23,7 +26,7 @@ class HomePage extends Component {
     if (this.state.posts === null || this.state.categories === null) this.initialDate()
   }
 
-  onClicksDashboard = (action, postId, data) => {
+  onClicksPost = (action, postId, data) => {
     if (
       action === POST.CHANGE_VOTE.upVote ||
       action === POST.CHANGE_VOTE.downVote
@@ -33,14 +36,29 @@ class HomePage extends Component {
     else if (action === POST.EDIT) this.props.dispatch(Post.edit(postId, data))
   };
 
+  onClicksFilter = (filter, data) => {
+    if (filter === FILTER.CATEGORIES) {
+      const filteredPosts = HomeUtils.getPostsByCategories(data, this.state.posts)
+      this.setState({ filteredPosts })
+    }
+    // else if(action === FILTER.Date)
+    // else if(action === FILTER.Smaller_Score)
+    // else if(action === FILTER.Bigger_Score)
+  }
+
   render () {
     // eslint-disable-next-line
     this.state.posts = this.props.posts
     // eslint-disable-next-line
     this.state.categories = this.props.categories
-    const { posts, categories } = this.state
+    const { posts, filteredPosts, categories } = this.state
 
-    return <Home posts={posts} categories={categories} onclick={this.onClicksDashboard} />
+    return <Home
+      posts={filteredPosts || posts}
+      categories={categories}
+      onClicksPost={this.onClicksPost}
+      onClicksFilter={this.onClicksFilter}
+    />
   }
 }
 

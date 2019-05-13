@@ -8,6 +8,6 @@ const formartCategories = (categories) => {
   return parseData
 }
 
-export const Categories = {
+export const CategoriesUtils = {
   formartCategories
 }
