@@ -1,27 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Post } from '../../../services/actions'
-import Home from './Home'
+import { Post, Categories } from '../../../services/actions'
 import { POST } from '../../constants/actions'
 
-class HomeScene extends Component {
+import Home from './Home'
+
+class HomePage extends Component {
   constructor (props) {
     super(props)
     this.state = {
       posts: null,
-      menuDotsIsOpen: false
+      categories: null
     }
   }
 
   initialDate () {
     this.props.dispatch(Post.initialData)
+    this.props.dispatch(Categories.initialData)
   }
 
   componentDidMount () {
-    if (this.state.posts === null) this.initialDate()
+    if (this.state.posts === null || this.state.categories === null) this.initialDate()
   }
 
-  handleClick = (action, postId, data) => {
+  onClicksDashboard = (action, postId, data) => {
     if (
       action === POST.CHANGE_VOTE.upVote ||
       action === POST.CHANGE_VOTE.downVote
@@ -33,17 +35,20 @@ class HomeScene extends Component {
 
   render () {
     // eslint-disable-next-line
-    this.state.posts = this.props.posts;
-    const { posts } = this.state
-    return <Home posts={posts} onclick={this.handleClick} />
+    this.state.posts = this.props.posts
+    // eslint-disable-next-line
+    this.state.categories = this.props.categories
+    const { posts, categories } = this.state
+
+    return <Home posts={posts} categories={categories} onclick={this.onClicksDashboard} />
   }
 }
 
-const mapStateToProps = ({ posts }) => ({ posts })
+const mapStateToProps = ({ posts, categories, router }) => ({ posts, categories, router })
 
 const mapDispatchToProps = dispatch => ({ dispatch })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HomeScene)
+)(HomePage)

@@ -1,5 +1,5 @@
 import { POST } from '../../app/constants/actions'
-import { deletePostInState, updatePostsInState } from '../../utils/PostReducerUteis'
+import { deletePostInState, updatePostsInState } from '../../utils'
 
 let newState = {}
 

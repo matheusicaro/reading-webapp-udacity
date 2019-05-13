@@ -1,0 +1,10 @@
+.dashboard-container {
+    display: grid;
+    grid-gap: 5%;
+    justify-items: center;
+    width: 100%;
+}
+
+.dashboard-container-navigate > #navbar-generic-elements > span {
+    color: aliceblue !important
+}

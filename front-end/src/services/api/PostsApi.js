@@ -9,30 +9,37 @@ import { requestApi, options } from './api'
 *  DELETE /posts/:id
 ********************************/
 
-export const initialDataApi = () => {
+const initialData = () => {
   const pathUrl = `/posts`
   const body = null
   const returnJson = true
   return requestApi.get(options(pathUrl, body, returnJson))
 }
 
-export const updateScoreApi = ({ action, postId }) => {
+const update = ({ action, postId }) => {
   const pathUrl = `/posts/${postId}`
   const body = { option: action }
   const returnJson = true
   return requestApi.post(options(pathUrl, body, returnJson))
 }
 
-export const deletePostApi = postId => {
+const deletePost = postId => {
   const pathUrl = `/posts/${postId}`
   const body = null
   const returnJson = false
   return requestApi.delete(options(pathUrl, body, returnJson))
 }
 
-export const editPostApi = ({ postId, dataUpdate }) => {
+const edit = ({ postId, dataUpdate }) => {
   const pathUrl = `/posts/${postId}`
   const body = dataUpdate
   const returnJson = true
   return requestApi.put(options(pathUrl, body, returnJson))
+}
+
+export const PostApi = {
+  initialData,
+  update,
+  deletePost,
+  edit
 }

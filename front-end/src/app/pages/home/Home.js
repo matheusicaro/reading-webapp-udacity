@@ -1,12 +1,26 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Dashboard } from '../../components/dashboard'
-
+import NavBar from '../../components/NavBar'
 import { POST } from '../../constants/actions'
 
-import { like, dislike, menuDots } from '../../assets/icons'
+import { like, dislike, menuDots, filter } from '../../assets/icons'
+
+import './home.css'
 
 const Home = props => {
-  return <Dashboard cards={props.posts} onclick={props.onclick} cardButtons={postButtons} />
+  return (
+    <Fragment>
+      <div className='dashboard-container'>
+        <NavBar categories={props.categories} />
+        <Dashboard
+          cards={props.posts}
+          categories={props.categories}
+          onclick={props.onclick}
+          cardButtons={postButtons}
+        />
+      </div>
+    </Fragment>
+  )
 }
 
 export default Home

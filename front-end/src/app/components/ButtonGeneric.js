@@ -11,6 +11,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button'
 import SvgIcon from '@material-ui/core/SvgIcon'
+import Typography from '@material-ui/core/Typography'
 
 export const ButtonGeneric = ({ onclick, button, data }) => {
   const handleClick = (event) => {
@@ -19,10 +20,15 @@ export const ButtonGeneric = ({ onclick, button, data }) => {
   }
   return (
     <Button style={{ 'minWidth': '0px' }} onClick={handleClick}>
-      <SvgIcon>
-        <path d={button.icon} />
-      </SvgIcon>
-      { button.name }
+
+      { button.icon &&
+        <SvgIcon>
+          <path d={button.icon} />
+        </SvgIcon>
+      }
+      <Typography variant='button' gutterBottom>
+        { button.name }
+      </Typography>
     </Button>
   )
 }

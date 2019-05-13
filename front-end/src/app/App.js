@@ -5,8 +5,8 @@ import { ROUTES } from './constants'
 
 const App = () => (
   <Switch>
-    <Route exact path={ROUTES.HOME.path} component={ROUTES.HOME.scene} />
-    {/* <Route exact path={Routes.LOGIN.path} component={Routes.LOGIN.scene} /> */}
+    <Route exact path={ROUTES.HOME.path} component={ROUTES.HOME.page} />
+    <Route exact path={ROUTES.CATEGORY.path} component={ROUTES.CATEGORY.page} />
     {/* <Route exact path={Routes.CREATEPRODUCT.path} component={Routes.CREATEPRODUCT.scene} /> */}
   </Switch>
 )

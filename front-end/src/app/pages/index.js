@@ -1,5 +1,7 @@
-import HomeScene from './home/HomeContainer'
+import HomePage from './home/HomeContainer'
+import ErrorPage from './error/Error'
 
 export {
-  HomeScene
+  HomePage,
+  ErrorPage
 }
