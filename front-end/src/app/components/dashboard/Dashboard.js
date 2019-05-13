@@ -5,11 +5,11 @@ import lodash from 'lodash'
 
 export const Dashboard = (props) => {
   const cards = lodash.valuesIn(props.cards)
-  const { cardButtons, categories } = props
+  const { cardButtons, categories, hideFilter = false } = props
   return (
     <Fragment>
 
-      <Filter byPosts={''} onclick={props.onClicksFilter} byCategories={categories} />
+      <Filter byPosts={''} onclick={props.onClicksFilter} byCategories={categories} hide={hideFilter} />
 
       { cards.length !== 0 &&
             cards.map(card => <Card

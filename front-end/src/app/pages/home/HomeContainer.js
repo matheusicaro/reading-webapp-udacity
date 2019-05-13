@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+
 import { Post, Categories } from '../../../services/actions'
 import { POST } from '../../constants/actions'
-import { FILTER } from '../../constants'
-import { HomeUtils } from '../../../utils'
+import { FILTER, ROUTES } from '../../constants'
+import { RouterUtils, HomeUtils } from '../../../utils'
 
 import Home from './Home'
 
@@ -13,6 +15,7 @@ class HomePage extends Component {
     this.state = {
       posts: null,
       filteredPosts: null,
+      appliedFilter: false,
       categories: null
     }
   }
@@ -22,7 +25,7 @@ class HomePage extends Component {
     this.props.dispatch(Categories.initialData)
   }
 
-  componentDidMount () {
+  componentWillMount () {
     if (this.state.posts === null || this.state.categories === null) this.initialDate()
   }
 
@@ -34,39 +37,63 @@ class HomePage extends Component {
 
     else if (action === POST.DELETE) this.props.dispatch(Post.delete(postId))
     else if (action === POST.EDIT) this.props.dispatch(Post.edit(postId, data))
+    else if (action === ROUTES.NAVIGATE) this.props.navigate(`${ROUTES.POST.path}/${postId}`)
   };
 
-  onClicksFilter = (filter, data) => {
-    if (filter === FILTER.CATEGORIES) {
-      const filteredPosts = HomeUtils.getPostsByCategories(data, this.state.posts)
-      this.setState({ filteredPosts })
+  applyingFilter = (filter, filterByCategories, posts) => {
+    if (filter === null) return posts
+    else if (filter === FILTER.CATEGORIES) {
+      HomeUtils.applyingFilterByCategories(filterByCategories, posts)
+    } else {
+      const newOrderingPosts = HomeUtils.applyingFilter(filter, posts)
+      this.setState({ posts: newOrderingPosts, filter, appliedFilter: true })
     }
-    // else if(action === FILTER.Date)
-    // else if(action === FILTER.Smaller_Score)
-    // else if(action === FILTER.Bigger_Score)
+
+    // if (filter === FILTER.CATEGORIES) {
+    //   const filteredPosts = HomeUtils.getPostsByCategories(filterByCategories, posts)
+    //   this.setState({ filteredPosts })
+    // } else if (filter === FILTER.Date) {
+    //   const filteredPosts = HomeUtils.sortPostsByDate(this.state.filteredPosts || posts)
+    //   this.setState({ filteredPosts })
+    // } else if (filter === FILTER.Bigger_Score) {
+    //   const filteredPosts = HomeUtils.sortPostsByBiggerScore(this.state.filteredPosts || posts)
+    //   this.setState({ filteredPosts })
+    // } else if (filter === FILTER.Smaller_Score) {
+    //   const filteredPosts = HomeUtils.sortPostsBymallerScore(this.state.filteredPosts || posts)
+    //   this.setState({ filteredPosts })
+    // }
   }
 
   render () {
     // eslint-disable-next-line
     this.state.posts = this.props.posts
-    // eslint-disable-next-line
+    // eslint-dis able-next-line
     this.state.categories = this.props.categories
-    const { posts, filteredPosts, categories } = this.state
+
+    const { posts, categories, filter, appliedFilter } = this.state
+
+    if (posts === null) this.initialDate()
+    if (!appliedFilter) this.applyingFilter(filter, null, posts)
 
     return <Home
-      posts={filteredPosts || posts}
+      posts={posts}
       categories={categories}
       onClicksPost={this.onClicksPost}
-      onClicksFilter={this.onClicksFilter}
+      onClicksFilter={this.applyingFilter}
     />
   }
 }
 
-const mapStateToProps = ({ posts, categories, router }) => ({ posts, categories, router })
+const mapStateToProps = ({ posts, categories }) => ({ posts, categories })
 
-const mapDispatchToProps = dispatch => ({ dispatch })
+const mapDispatchToProps = dispatch => {
+  const navigate = RouterUtils.Router(dispatch)
+  return { dispatch, ...navigate }
+}
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomePage)
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(HomePage)
+)

@@ -20,3 +20,11 @@
     grid-auto-flow: column;
 }
 
+.card-title-link {
+    color: #3F51B5;
+    cursor: pointer;
+}
+
+.button-comments {
+    justify-items: end
+}

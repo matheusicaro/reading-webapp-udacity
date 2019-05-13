@@ -1,3 +1,3 @@
-export const dispatch = (dispatch, state) => ({
+export const aaadispatch = (dispatch, state) => ({
   [state]: dispatch(state.action)
 })

@@ -4,7 +4,8 @@ import FilterByPost from './FilterByPost'
 
 import './filter.css'
 
-export const Filter = ({ byCategories, onclick }) => {
+export const Filter = ({ byCategories, onclick, hide }) => {
+  if (hide) return ''
   return (
     <Fragment>
       <div className='container'>

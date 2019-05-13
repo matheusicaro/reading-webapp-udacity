@@ -1,19 +1,15 @@
-import { HomePage, ErrorPage } from '../pages'
+import { HomePage, PostPage } from '../pages'
 
 export const ROUTES = {
+  NAVIGATE: 'NAVIGATE',
   HOME: {
     path: `/`,
     title: 'Home',
     page: HomePage
   },
-  CATEGORY: {
-    path: `/cacacaca`,
-    title: 'Categories',
-    page: ErrorPage
+  POST: {
+    title: 'Post',
+    path: `/post`,
+    page: PostPage
   }
-  //   CREATEPRODUCT: {
-  //     path: `/create-product`,
-  //     title: 'Create Product',
-  //     scene: CreateProductScene,
-  //   },
 }
