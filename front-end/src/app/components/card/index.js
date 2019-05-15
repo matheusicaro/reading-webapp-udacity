@@ -1,2 +1,3 @@
-export * from './Card'
+export * from './PostCard'
 export * from './MenuCard'
+export * from './CommentsCard'

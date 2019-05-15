@@ -1,4 +1,4 @@
-import { POST } from '../../app/constants/actions'
+import { CARD_BUTTON as POST } from '../../app/constants/actions'
 import { PostApi } from '../api'
 import { DispatchUteis } from '../../utils'
 

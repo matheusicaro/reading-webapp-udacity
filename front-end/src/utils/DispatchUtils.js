@@ -1,6 +1,5 @@
 const withReturnApi = (dispatch, call, action, data) => {
   // dispatch(showLoading())  INSERIR PAGINA DE LOADING AQUI QUANDO INICIAR UMA REQUISIÇÃO ASSINCRONA
-
   return call(data)
     .then(response => {
       dispatch(action(response))

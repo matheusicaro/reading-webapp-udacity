@@ -4,8 +4,9 @@ import { withRouter } from 'react-router-dom'
 
 import Post from './Post'
 import { PostUtils, RouterUtils } from '../../../utils'
-import { Comments } from '../../../services/actions'
+import { Post as PostAction, Comments } from '../../../services/actions'
 import { ROUTES } from '../../constants'
+import { CARD_BUTTON as POST_OR_COMMENT } from '../../constants/actions'
 
 class PostPage extends Component {
   constructor (props) {
@@ -16,8 +17,8 @@ class PostPage extends Component {
     }
   }
 
-  getComments (id) {
-    this.props.dispatch(Comments.getById(id))
+  getComments (postId) {
+    this.props.dispatch(Comments.getById(postId))
   }
 
   componentWillMount () {
@@ -32,14 +33,50 @@ class PostPage extends Component {
     if (this.state.post !== null || this.state.comments !== null) { this.getComments(this.state.post.id) }
   }
 
+  onClicksPost = (action, postId, data) => {
+    if (
+      action === POST_OR_COMMENT.CHANGE_VOTE.upVote ||
+      action === POST_OR_COMMENT.CHANGE_VOTE.downVote
+    ) {
+      this.props.dispatch(PostAction.updateScore(action, postId))
+      this.setState(PostUtils.updateState(action, this.state.post))
+    } else if (action === POST_OR_COMMENT.DELETE) {
+      this.props.dispatch(PostAction.delete(postId))
+      this.navigateToHome()
+    } else if (action === POST_OR_COMMENT.EDIT) {
+      this.props.dispatch(PostAction.edit(postId, data))
+      this.setState(PostUtils.updateState(action, this.state.post, data))
+    } else if (action === ROUTES.NAVIGATE) window.alert('RETIRAR AÇÃO DESTE BUTTON NESTA PAGINA')
+  };
+
+  onClicksComment = (action, commentId, data) => {
+    console.log()
+    if (
+      action === POST_OR_COMMENT.CHANGE_VOTE.upVote ||
+      action === POST_OR_COMMENT.CHANGE_VOTE.downVote
+    ) this.props.dispatch(Comments.updateScore(action, commentId))
+
+    else if (action === POST_OR_COMMENT.DELETE) this.props.dispatch(Comments.delete(commentId))
+    else if (action === POST_OR_COMMENT.EDIT) this.props.dispatch(Post.edit(commentId, data))
+    else if (action === ROUTES.NAVIGATE) this.props.navigate(`${ROUTES.POST.path}/${commentId}`)
+  };
+
+  navigateToHome () {
+    this.props.navigate(ROUTES.HOME.path)
+  }
+
   render () {
     const { post } = this.state
     const { comments } = this.props
 
-    if (post === null) this.props.navigate(ROUTES.HOME.path)
-
+    if (post === null) this.navigateToHome()
     return (
-      <Post post={post} comments={comments} />
+      <Post
+        post={post}
+        onClicksPost={this.onClicksPost}
+        onClicksComment={this.onClicksComment}
+        comments={comments}
+      />
     )
   }
 }

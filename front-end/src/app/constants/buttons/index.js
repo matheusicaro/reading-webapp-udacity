@@ -1,1 +1,1 @@
-export * from './CardButtons'
+export * from './PostButtons'

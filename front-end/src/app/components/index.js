@@ -1,3 +1,4 @@
 export * from './ButtonGeneric'
-export * from './FormGeneric'
+export * from './FormDialog'
 export * from './Comments'
+export * from './Form'

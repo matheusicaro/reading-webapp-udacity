@@ -1,5 +1,5 @@
-import { POST } from '../../app/constants/actions'
-import { deletePostInState, updatePostsInState } from '../../utils'
+import { CARD_BUTTON as POST } from '../../app/constants/actions'
+import { deletePostInState, updateChageInState } from '../../utils'
 
 let newState = {}
 
@@ -11,7 +11,7 @@ export const posts = (state = null, action) => {
         ...action.payload
       }
     case POST.CHANGE_VOTE[action.type]:
-      newState = updatePostsInState(state, action.payload)
+      newState = updateChageInState(state, action.payload)
       return {
         ...newState
       }
@@ -21,7 +21,7 @@ export const posts = (state = null, action) => {
         ...newPosts
       }
     case POST.EDIT:
-      newState = updatePostsInState(state, action.payload)
+      newState = updateChageInState(state, action.payload)
       return {
         ...newState
       }

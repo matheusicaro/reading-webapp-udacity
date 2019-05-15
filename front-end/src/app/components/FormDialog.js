@@ -12,7 +12,7 @@ const formDataDefault = {
   title: 'Title do form Default',
   formContext: 'Contexto do form Default'
 }
-export const FormGeneric = ({ formOpen, formClose, formData = formDataDefault, sendForm }) => {
+export const FormDialog = ({ formOpen, formClose, formData = formDataDefault, sendForm }) => {
   const { title, formContext, fields } = formData || formDataDefault
   let data = {}
 

@@ -1,6 +1,6 @@
 import lodash from 'lodash'
 
-export const updatePostsInState = (posts, newPost) => {
+export const updateChageInState = (posts, newPost) => {
   let newPosts = lodash.values(posts)
   let indexLocale
   newPosts = newPosts.filter((post, index) => {

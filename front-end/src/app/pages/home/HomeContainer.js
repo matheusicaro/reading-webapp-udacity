@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { Post, Categories } from '../../../services/actions'
-import { POST } from '../../constants/actions'
+import { CARD_BUTTON as POST } from '../../constants/actions'
 import { FILTER, ROUTES } from '../../constants'
 import { RouterUtils, HomeUtils } from '../../../utils'
 
@@ -29,7 +29,7 @@ class HomePage extends Component {
     if (this.state.posts === null || this.state.categories === null) this.initialDate()
   }
 
-  onClicksPost = (action, postId, data) => {
+  onClicksCard = (action, postId, data) => {
     if (
       action === POST.CHANGE_VOTE.upVote ||
       action === POST.CHANGE_VOTE.downVote
@@ -78,7 +78,7 @@ class HomePage extends Component {
     return <Home
       posts={posts}
       categories={categories}
-      onClicksPost={this.onClicksPost}
+      onClicksPost={this.onClicksCard}
       onClicksFilter={this.applyingFilter}
     />
   }

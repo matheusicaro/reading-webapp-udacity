@@ -1,4 +1,4 @@
-import { POST } from '../../constants/actions'
+import { CARD_BUTTON as POST } from '../actions'
 import { like, dislike, menuDots, comments } from '../../assets/icons'
 
 const postButtonsMenu = {

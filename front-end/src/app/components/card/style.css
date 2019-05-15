@@ -1,26 +1,29 @@
-.card-content {
+.post-card-content {
     display: grid;
-    width: 50%;
     padding: 3%;
     grid-gap: 10px;
 }
 
-.card-content-title-button {
+.post-card-content-title-button {
     max-width: 20%;
     justify-self: end;
+    
 }
 
-.card-content-line {
+.post-card-content-line {
     border: solid;
+    border: solid;
+    border-width: 1px;
+    border-color: gainsboro;
 }
 
-.card-content-title,
-.card-content-iten-footer {
+.post-card-content-title,
+.post-card-content-iten-footer {
     display: grid;
     grid-auto-flow: column;
 }
 
-.card-title-link {
+.post-card-title-link {
     color: #3F51B5;
     cursor: pointer;
 }

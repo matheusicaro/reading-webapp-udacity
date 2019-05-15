@@ -15,7 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import Button from '@material-ui/core/Button'
 import SvgIcon from '@material-ui/core/SvgIcon'
-import { FormGeneric as Form } from '../'
+import { FormDialog as Form } from '../'
 
 const defaultItems = [
   { text: 'element-1 [share]', action: 'share' },

@@ -3,8 +3,8 @@ import React from 'react'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
-import { ButtonGeneric as Button } from '../'
-import { MenuCard as Menu } from './'
+import { ButtonGeneric as Button } from '..'
+import { MenuCard as Menu } from '.'
 import { ROUTES } from '../../constants'
 
 import loadsh from 'lodash'
@@ -22,24 +22,24 @@ const cardDefault = {
   category: ''
 }
 
-export const Card = ({ card, onclick, menuDots, buttons }) => {
+export const PostCard = ({ card, onclick, menuDots, buttons }) => {
   card = card || cardDefault
   const date = card && card.timestamp ? new Date(card.timestamp) : ''
   const { buttonVoteUp, buttonVoteDown, comments } = buttons
 
   return (
-    <Paper className='card-content' elevation={1}>
+    <Paper className='post-card-content' elevation={1}>
 
-      <div className='card-content-title'>
+      <div className='post-card-content-title'>
         <Typography variant='h5' component='h3' onClick={event => onclick(ROUTES.NAVIGATE, card.id)}>
-          <span className='card-title-link'>{card.title}</span>
+          <span className='post-card-title-link'>{card.title}</span>
         </Typography>
-        <span className='card-content-title-button'>
+        <span className='post-card-content-title-button'>
           <Menu button={menuDots.button} items={menuDots.items} selectOnClick={onclick} cardId={card.id} />
         </span>
       </div>
 
-      <span className='card-content-line' />
+      <span className='post-card-content-line' />
 
       <div>
         <Typography component='p'>
@@ -47,7 +47,7 @@ export const Card = ({ card, onclick, menuDots, buttons }) => {
         </Typography>
       </div>
 
-      <span className='card-content-line' />
+      <span className='post-card-content-line' />
 
       <span style={{ 'textAlign': 'end' }}>
         <Typography component='p'>
@@ -55,7 +55,7 @@ export const Card = ({ card, onclick, menuDots, buttons }) => {
         </Typography>
       </span>
 
-      <div className='card-content-iten-footer'>
+      <div className='post-card-content-iten-footer'>
         <div>
           <Typography component='p'>
             <Button onclick={onclick} button={buttonVoteUp} data={card.id} />
@@ -64,7 +64,7 @@ export const Card = ({ card, onclick, menuDots, buttons }) => {
           </Typography>
         </div>
 
-        <div className='card-content-iten-footer button-comments'>
+        <div className='post-card-content-iten-footer button-comments'>
           <Button onclick={onclick} button={comments} data={card.id} name={card.commentCount} />
         </div>
       </div>

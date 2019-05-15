@@ -1,23 +1,30 @@
 import React, { Fragment } from 'react'
 
-import { Card } from '../../components/card'
+import { PostCard } from '../../components/card'
 import NavBar from '../../components/NavBar'
-import { Comments } from '../../components'
+import { Comments, Form } from '../../components'
 import { CARD_BUTTONS } from '../../constants/buttons'
+
+import './post.css'
 
 const Post = (props) => {
   return (
     <Fragment>
-      <div className='dashboard-container'>
+      <div className='post-container'>
         <NavBar />
-        <Card
-          card={props.post}
-          onclick={props.onClicksPost}
-          buttons={CARD_BUTTONS.footer}
-          menuDots={CARD_BUTTONS.menuDots}
-        />
 
-        <Comments comments={props.comments} />
+        <div className='post-dashboard'>
+          <PostCard
+            card={props.post}
+            onclick={props.onClicksPost}
+            buttons={CARD_BUTTONS.footer}
+            menuDots={CARD_BUTTONS.menuDots}
+          />
+
+          <Form onclick={'SEND CLIC TO FORM'} />
+
+          <Comments comments={props.comments} onclick={props.onClicksComment} />
+        </div>
 
       </div>
     </Fragment>
