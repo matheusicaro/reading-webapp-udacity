@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { Post, Categories } from '../../../services/actions'
-import { CARD_BUTTON as POST } from '../../constants/actions'
-import { FILTER, ROUTES } from '../../constants'
-import { RouterUtils, HomeUtils } from '../../../utils'
+import { CARD_BUTTON as ACTION_POST } from '../../constants/actions'
+import { ROUTES } from '../../constants'
+import { RouterUtils } from '../../../utils'
 
 import Home from './Home'
 
@@ -31,23 +31,23 @@ class HomePage extends Component {
 
   onClicksCard = (action, postId, data) => {
     if (
-      action === POST.CHANGE_VOTE.upVote ||
-      action === POST.CHANGE_VOTE.downVote
+      action === ACTION_POST.CHANGE_VOTE.upVote ||
+      action === ACTION_POST.CHANGE_VOTE.downVote
     ) this.props.dispatch(Post.updateScore(action, postId))
 
-    else if (action === POST.DELETE) this.props.dispatch(Post.delete(postId))
-    else if (action === POST.EDIT) this.props.dispatch(Post.edit(postId, data))
+    else if (action === ACTION_POST.DELETE) this.props.dispatch(Post.delete(postId))
+    else if (action === ACTION_POST.EDIT) this.props.dispatch(Post.edit(postId, data))
     else if (action === ROUTES.NAVIGATE) this.props.navigate(`${ROUTES.POST.path}/${postId}`)
   };
 
   applyingFilter = (filter, filterByCategories, posts) => {
-    if (filter === null) return posts
-    else if (filter === FILTER.CATEGORIES) {
-      HomeUtils.applyingFilterByCategories(filterByCategories, posts)
-    } else {
-      const newOrderingPosts = HomeUtils.applyingFilter(filter, posts)
-      this.setState({ posts: newOrderingPosts, filter, appliedFilter: true })
-    }
+    // if (filter === null) return posts
+    // else if (filter === FILTER.CATEGORIES) {
+    //   HomeUtils.applyingFilterByCategories(filterByCategories, posts)
+    // } else {
+    //   const newOrderingPosts = HomeUtils.applyingFilter(filter, posts)
+    //   this.setState({ posts: newOrderingPosts, filter, appliedFilter: true })
+    // }
 
     // if (filter === FILTER.CATEGORIES) {
     //   const filteredPosts = HomeUtils.getPostsByCategories(filterByCategories, posts)

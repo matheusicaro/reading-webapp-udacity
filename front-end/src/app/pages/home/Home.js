@@ -5,7 +5,7 @@ import NavBar from '../../components/NavBar'
 import { PostCard } from '../../components/card'
 import { Filter } from '../../components/filter'
 
-import { CARD_BUTTONS } from '../../constants/buttons'
+import { CARD_POST } from '../../constants/buttons'
 
 import './home.css'
 
@@ -25,8 +25,8 @@ const Home = props => {
               key={post.id}
               card={post}
               onclick={props.onClicksPost}
-              buttons={CARD_BUTTONS.footer}
-              menuDots={CARD_BUTTONS.menuDots} />) }
+              buttons={CARD_POST.footer}
+              menuDots={CARD_POST.menuDots} />) }
         </div>
 
       </div>

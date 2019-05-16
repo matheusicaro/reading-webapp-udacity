@@ -2,8 +2,10 @@ import React, { Fragment } from 'react'
 
 import { PostCard } from '../../components/card'
 import NavBar from '../../components/NavBar'
-import { Comments, Form } from '../../components'
-import { CARD_BUTTONS } from '../../constants/buttons'
+import { Form } from '../../components'
+import Comments from '../../components/Comments'
+
+import { CARD_POST } from '../../constants/buttons'
 
 import './post.css'
 
@@ -17,13 +19,15 @@ const Post = (props) => {
           <PostCard
             card={props.post}
             onclick={props.onClicksPost}
-            buttons={CARD_BUTTONS.footer}
-            menuDots={CARD_BUTTONS.menuDots}
+            buttons={CARD_POST.footer}
+            menuDots={CARD_POST.menuDots}
+            disableTitleNavigation
+            disableButtonComment
           />
 
-          <Form onclick={'SEND CLIC TO FORM'} />
+          <Form onclick={props.onClickSendComment} />
 
-          <Comments comments={props.comments} onclick={props.onClicksComment} />
+          <Comments onclick={props.onClicksComment} />
         </div>
 
       </div>

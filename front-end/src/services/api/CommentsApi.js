@@ -30,8 +30,24 @@ const deleteComment = commentId => {
   return requestApi.delete(options(pathUrl, body, returnJson))
 }
 
+const edit = ({ commentId, dataUpdate }) => {
+  const pathUrl = `/comments/${commentId}`
+  const body = dataUpdate
+  const returnJson = true
+  return requestApi.put(options(pathUrl, body, returnJson))
+}
+
+const createComment = data => {
+  const pathUrl = `/comments`
+  const body = data
+  const returnJson = true
+  return requestApi.post(options(pathUrl, body, returnJson))
+}
+
 export const CommentsApi = {
   getById,
   update,
-  deleteComment
+  deleteComment,
+  edit,
+  createComment
 }

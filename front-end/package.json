@@ -18,7 +18,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-promise-middleware": "^5.1.1",
     "redux-thunk": "^2.2.0",
-    "request-promise": "^4"
+    "request-promise": "^4",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "npm run format && react-scripts start",

@@ -8,7 +8,7 @@ import { MenuCard as Menu } from '.'
 
 import './style.css'
 
-export const CommentCard = ({ card, onclick, menuDots, buttons }) => {
+export const CommentCard = ({ card, onclick, menuDots, buttons, disableButtonComment = false }) => {
   const date = card && card.timestamp ? new Date(card.timestamp) : ''
   const { buttonVoteUp, buttonVoteDown, comments } = buttons
 
@@ -45,9 +45,12 @@ export const CommentCard = ({ card, onclick, menuDots, buttons }) => {
           </Typography>
         </div>
 
-        <div className='post-card-content-iten-footer button-comments'>
-          <Button onclick={onclick} button={comments} data={card.id} name={card.commentCount} />
-        </div>
+        { disableButtonComment
+          ? ''
+          : <div className='post-card-content-iten-footer button-comments'>
+            <Button onclick={onclick} button={comments} data={card.id} name={card.commentCount} />
+          </div>
+        }
       </div>
 
     </Paper>

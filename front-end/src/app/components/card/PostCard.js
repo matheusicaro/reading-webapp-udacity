@@ -11,28 +11,31 @@ import loadsh from 'lodash'
 
 import './style.css'
 
-const cardDefault = {
-  id: '',
-  title: '',
-  name: '',
-  author: '',
-  body: '',
-  commentCount: '',
-  voteScore: '',
-  category: ''
-}
+export const PostCard = props => {
+  const { card, onclick, menuDots, buttons } = props
+  const { disableTitleNavigation = false, disableButtonComment = false } = props
 
-export const PostCard = ({ card, onclick, menuDots, buttons }) => {
-  card = card || cardDefault
   const date = card && card.timestamp ? new Date(card.timestamp) : ''
   const { buttonVoteUp, buttonVoteDown, comments } = buttons
+
+  const getTitleNavigate = () => (
+    <span
+      className='post-card-title-link'
+      onClick={event => onclick(ROUTES.NAVIGATE, card.id)}
+    >{ card.title }</span>
+  )
 
   return (
     <Paper className='post-card-content' elevation={1}>
 
       <div className='post-card-content-title'>
-        <Typography variant='h5' component='h3' onClick={event => onclick(ROUTES.NAVIGATE, card.id)}>
-          <span className='post-card-title-link'>{card.title}</span>
+        <Typography variant='h5' component='h3' >
+
+          { disableTitleNavigation
+            ? <span>{card.title}</span>
+            : getTitleNavigate()
+          }
+
         </Typography>
         <span className='post-card-content-title-button'>
           <Menu button={menuDots.button} items={menuDots.items} selectOnClick={onclick} cardId={card.id} />
@@ -64,9 +67,12 @@ export const PostCard = ({ card, onclick, menuDots, buttons }) => {
           </Typography>
         </div>
 
-        <div className='post-card-content-iten-footer button-comments'>
-          <Button onclick={onclick} button={comments} data={card.id} name={card.commentCount} />
-        </div>
+        { disableButtonComment
+          ? ''
+          : <div className='post-card-content-iten-footer button-comments'>
+            <Button onclick={onclick} button={comments} data={card.id} name={card.commentCount} />
+          </div>
+        }
       </div>
 
     </Paper>

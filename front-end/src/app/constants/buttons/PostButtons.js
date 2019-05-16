@@ -1,4 +1,4 @@
-import { CARD_BUTTON as POST } from '../actions'
+import { CARD_BUTTON as ACTION_POST } from '../actions'
 import { like, dislike, menuDots, comments } from '../../assets/icons'
 
 const postButtonsMenu = {
@@ -10,32 +10,59 @@ const postButtonsMenu = {
   // Items do menu que ao receber um click, tem opção de ação, e podem abrir um formulario.
   items: [
     {
-      action: POST.EDIT,
+      action: ACTION_POST.EDIT,
       form: {
         data: {
-          title: 'Editar Postagem', // TODO: Translate
+          title: 'Edit Post', // TODO: Translate
           fields: [ // TODO: Translate
-            { label: 'Titulo', value: 'title' },
-            { label: 'Descrição', value: 'body' }
+            { label: 'Title of Post', value: 'title' },
+            { label: 'Description', value: 'body' }
           ]
         }
       },
-      text: 'Editar' // TODO: Translate
+      text: 'Edit Post' // TODO: Translate
     },
     {
-      action: POST.DELETE,
-      text: 'Deletar' // TODO: Translate
+      action: ACTION_POST.DELETE,
+      text: 'Delet Post' // TODO: Translate
+    }
+  ]
+}
+
+const commentButtonsMenu = {
+  button: {
+    click: 'click',
+    action: 'click',
+    icon: menuDots
+  },
+  // Items do menu que ao receber um click, tem opção de ação, e podem abrir um formulario.
+  items: [
+    {
+      action: ACTION_POST.EDIT,
+      form: {
+        data: {
+          title: 'Edit comment', // TODO: Translate
+          fields: [ // TODO: Translate
+            { label: 'Comment', value: 'body' }
+          ]
+        }
+      },
+      text: 'Edit' // TODO: Translate
+    },
+    {
+      action: ACTION_POST.DELETE,
+      text: 'Delet Comment' // TODO: Translate
     }
   ]
 }
 
 const footerButtons = {
   buttonVoteUp: {
-    action: POST.CHANGE_VOTE.upVote,
+    action: ACTION_POST.CHANGE_VOTE.upVote,
     icon: like
   },
   buttonVoteDown: {
-    action: POST.CHANGE_VOTE.downVote,
+    action: ACTION_POST.CHANGE_VOTE.downVote,
     icon: dislike
   },
   comments: {
@@ -44,7 +71,12 @@ const footerButtons = {
   }
 }
 
-export const CARD_BUTTONS = {
+export const CARD_POST = {
   menuDots: postButtonsMenu,
+  footer: footerButtons
+}
+
+export const CARD_COMMENT = {
+  menuDots: commentButtonsMenu,
   footer: footerButtons
 }

@@ -1,11 +1,14 @@
 import React, { Fragment } from 'react'
-import lodash from 'lodash'
-import { CommentCard } from '../components/card'
-import { CARD_BUTTONS } from '../constants/buttons'
-import Typography from '@material-ui/core/Typography'
+import { connect } from 'react-redux'
 
-export const Comments = props => {
-  const comments = lodash.values(props.comments)
+import Typography from '@material-ui/core/Typography'
+import { CommentCard } from '../components/card'
+import { CARD_COMMENT } from '../constants/buttons'
+
+import { SortBy } from '../../utils'
+
+const Comments = props => {
+  const comments = SortBy.BiggerScore(props.comments)
 
   return (
     <Fragment>
@@ -19,11 +22,19 @@ export const Comments = props => {
           key={index}
           card={coment}
           onclick={props.onclick}
-          buttons={CARD_BUTTONS.footer}
-          menuDots={CARD_BUTTONS.menuDots}
-
+          buttons={CARD_COMMENT.footer}
+          menuDots={CARD_COMMENT.menuDots}
+          disableButtonComment
         />)
       )}
+
     </Fragment>
   )
 }
+
+const mapStateToProps = ({ comments }) => ({ comments })
+
+export default connect(
+  mapStateToProps,
+  null
+)(Comments)

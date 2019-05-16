@@ -1,38 +1,42 @@
-import { CARD_BUTTON as POST } from '../../app/constants/actions'
+import { CARD_BUTTON as ACTION_POST } from '../../app/constants/actions'
 import { PostApi } from '../api'
 import { DispatchUteis } from '../../utils'
 
 const editPostAction = payload => {
   return {
-    type: POST.EDIT,
+    type: ACTION_POST.EDIT,
     payload
   }
 }
 
 const deletePostAction = payload => {
   return {
-    type: POST.DELETE,
+    type: ACTION_POST.DELETE,
     payload
   }
 }
 
-const downVoteAction = payload => {
+const downVoteAction = post => {
   return {
-    type: POST.CHANGE_VOTE.downVote,
-    payload
+    type: ACTION_POST.CHANGE_VOTE.downVote,
+    payload: {
+      post
+    }
   }
 }
 
-const upVoteAction = payload => {
+const upVoteAction = post => {
   return {
-    type: POST.CHANGE_VOTE.upVote,
-    payload
+    type: ACTION_POST.CHANGE_VOTE.upVote,
+    payload: {
+      post
+    }
   }
 }
 
 const receiveDataAction = payload => {
   return {
-    type: POST.INITIAL_DATA,
+    type: ACTION_POST.INITIAL_DATA,
     payload
   }
 }
@@ -42,7 +46,7 @@ const initialData = dispatch => {
 }
 
 const updateScore = (action, postId) => dispatch => {
-  const scoreAction = action === POST.CHANGE_VOTE.upVote ? upVoteAction : downVoteAction
+  const scoreAction = action === ACTION_POST.CHANGE_VOTE.upVote ? upVoteAction : downVoteAction
   const data = { action, postId }
   return DispatchUteis.withReturnApi(dispatch, PostApi.update, scoreAction, data)
 }

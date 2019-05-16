@@ -6,7 +6,9 @@ export const CARD_BUTTON = {
   },
   DELETE: 'DELETE',
   EDIT: 'EDIT',
-  GET_BY_ID: 'GET_BY_ID'
+  GET_BY_ID: 'GET_BY_ID',
+  SEND_COMMENTER: 'SEND_COMMENTER',
+  CREATE_COMMENT: 'CREATE_COMMENT'
 }
 
 export const CATEGORIES = {

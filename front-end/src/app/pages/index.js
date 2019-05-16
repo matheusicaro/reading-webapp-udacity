@@ -1,6 +1,6 @@
 import HomePage from './home/HomeContainer'
 import ErrorPage from './error/Error'
-import PostPage from './post/PostContainer'
+import PostPage from './PostDetails/PostDetailsContainer'
 
 export {
   HomePage,

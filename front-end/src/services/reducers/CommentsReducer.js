@@ -1,30 +1,35 @@
-import { CARD_BUTTON as COMMENTS } from '../../app/constants/actions'
-import { deletePostInState, updateChageInState } from '../../utils'
+import { CARD_BUTTON as ACTION_COMMENTS } from '../../app/constants/actions'
+import { updateChageInState, deletePostInState, addNewObjInState } from '../../utils'
 
 let newState = {}
 
 export const comments = (state = null, action) => {
-  if (action.type === COMMENTS.CHANGE_VOTE.downVote || action.type === COMMENTS.CHANGE_VOTE.upVote) console.log(state, action)
   switch (action.type) {
-    case COMMENTS.GET_BY_ID:
+    case ACTION_COMMENTS.CREATE_COMMENT:
+      newState = addNewObjInState(action.payload, state)
+      return {
+        ...newState
+      }
+    case ACTION_COMMENTS.GET_BY_ID:
       return {
         ...action.payload
       }
-    case COMMENTS.CHANGE_VOTE[action.type]:
+    case ACTION_COMMENTS.CHANGE_VOTE[action.type]:
+
+      newState = action.payload.comment ? updateChageInState(state, action.payload.comment) : state
+      return {
+        ...newState
+      }
+    case ACTION_COMMENTS.DELETE:
+      const newPosts = deletePostInState(state, action.payload)
+      return {
+        ...newPosts
+      }
+    case ACTION_COMMENTS.EDIT:
       newState = updateChageInState(state, action.payload)
       return {
         ...newState
       }
-    // case POST.DELETE:
-    //   const newPosts = deletePostInState(state, action.payload)
-    //   return {
-    //     ...newPosts
-    //   }
-    // case POST.EDIT:
-    //   newState = updatePostsInState(state, action.payload)
-    //   return {
-    //     ...newState
-    //   }
     default:
       return state
   }
