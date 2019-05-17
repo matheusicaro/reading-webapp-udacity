@@ -6,6 +6,7 @@ import './filter.css'
 
 export const Filter = ({ byCategories, onclick, hide }) => {
   if (hide) return ''
+
   return (
     <Fragment>
       <div className='container'>

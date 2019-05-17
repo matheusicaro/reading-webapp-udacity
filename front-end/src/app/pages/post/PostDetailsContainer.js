@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import GeneraId from 'uuid'
 
-import Post from './PostDetails'
+import PostDetails from './PostDetails'
 import { RouterUtils } from '../../../utils'
 import { Post as PostAction, Comments } from '../../../services/actions'
 import { ROUTES } from '../../constants'
@@ -84,7 +84,7 @@ class PostPage extends Component {
     if (post === null) this.navigateToHome()
 
     return (
-      <Post
+      <PostDetails
         post={post}
         onClicksPost={this.onClicksPost}
         onClicksComment={this.onClicksComment}

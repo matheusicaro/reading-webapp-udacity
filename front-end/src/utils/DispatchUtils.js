@@ -34,7 +34,10 @@ const withoutReturnApi = (
     })
 }
 
+export const initialDate = {}
+
 export const DispatchUteis = {
   withReturnApi,
-  withoutReturnApi
+  withoutReturnApi,
+  initialDate
 }

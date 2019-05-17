@@ -7,9 +7,8 @@ const App = () => {
   return (
     <Switch>
       <Route exact path={ROUTES.HOME.path} component={ROUTES.HOME.page} />
-      {/* TODO: Adicionar nota para rotas com [:id] */}
-      <Route exact path='/post/:id' component={ROUTES.POST.page} />
-      {/* <Route exact path={Routes.CREATEPRODUCT.path} component={Routes.CREATEPRODUCT.scene} /> */}
+      <Route exact path={`${ROUTES.POST.path}/:id`} component={ROUTES.POST.page} />
+      <Route exact path={`${ROUTES.CATEGORIES.path}/:category`} component={ROUTES.CATEGORIES.page} />
     </Switch>
   )
 }

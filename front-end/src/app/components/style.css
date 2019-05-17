@@ -1,0 +1,5 @@
+.navbar-container {
+    display: grid;
+    grid-auto-flow: column;
+    width: 100%;
+}

@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-import { Post, Categories } from '../../../services/actions'
+import { Post } from '../../../services/actions'
 import { CARD_BUTTON as ACTION_POST } from '../../constants/actions'
-import { ROUTES } from '../../constants'
-import { RouterUtils } from '../../../utils'
+import { ROUTES, FILTER } from '../../constants'
+import { RouterUtils, SortBy, parseDataPropsToState } from '../../../utils'
 
 import Home from './Home'
 
@@ -14,19 +14,21 @@ class HomePage extends Component {
     super(props)
     this.state = {
       posts: null,
-      filteredPosts: null,
-      appliedFilter: false,
-      categories: null
+      aplicatedFilter: false
     }
   }
 
   initialDate () {
     this.props.dispatch(Post.initialData)
-    this.props.dispatch(Categories.initialData)
   }
 
-  componentWillMount () {
-    if (this.state.posts === null || this.state.categories === null) this.initialDate()
+  componentDidMount () {
+    if (this.state.posts === null && this.props.posts === null) this.initialDate()
+    else if (this.props.posts !== null) console.log(this.props.posts)
+    if (this.state.posts !== this.props.posts) {
+      console.log(parseDataPropsToState(this.props.state))
+      // this.setState( = lodash.values(this.props.posts)
+    }
   }
 
   onClicksCard = (action, postId, data) => {
@@ -40,11 +42,14 @@ class HomePage extends Component {
     else if (action === ROUTES.NAVIGATE) this.props.navigate(`${ROUTES.POST.path}/${postId}`)
   };
 
-  applyingFilter = (filter, filterByCategories, posts) => {
-    // if (filter === null) return posts
-    // else if (filter === FILTER.CATEGORIES) {
-    //   HomeUtils.applyingFilterByCategories(filterByCategories, posts)
-    // } else {
+  applyingFilter = (filter) => {
+    let { posts } = this.state
+    console.log(posts)
+    if (filter === FILTER.Date) {
+      posts = SortBy.Date(posts)
+      console.log(posts)
+      this.setState({ posts })
+    }
     //   const newOrderingPosts = HomeUtils.applyingFilter(filter, posts)
     //   this.setState({ posts: newOrderingPosts, filter, appliedFilter: true })
     // }
@@ -65,19 +70,19 @@ class HomePage extends Component {
   }
 
   render () {
-    // eslint-disable-next-line
-    this.state.posts = this.props.posts
-    // eslint-dis able-next-line
-    this.state.categories = this.props.categories
+    let { posts } = this.props
+    const { aplicatedFilter } = this.state
 
-    const { posts, categories, filter, appliedFilter } = this.state
+    if (posts === null) return <div> carregando os dados ...</div>
 
-    if (posts === null) this.initialDate()
-    if (!appliedFilter) this.applyingFilter(filter, null, posts)
+    // se o filtro estiver aplicado, então os posts vão receber os dados do state que vai ser filtrado
+    // depois que realizar o filtro, ai eu ativo o aplicatedFilter == false para que possa escultar novamente
+    if (aplicatedFilter) {
+      posts = this.setState(posts)
+    }
 
     return <Home
-      posts={posts}
-      categories={categories}
+      // posts={posts}
       onClicksPost={this.onClicksCard}
       onClicksFilter={this.applyingFilter}
     />

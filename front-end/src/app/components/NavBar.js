@@ -8,17 +8,28 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 
 import { RouterUtils, CategoriesUtils } from '../../utils'
-// import { ROUTES } from '../../constants'
+import { Categories } from '../../services/actions'
+import { ROUTES } from '../constants'
 
-const NavBar = (props) => {
+import './style.css'
+
+const NavBar = props => {
   const { categories } = props
+
+  if (categories === null) {
+    props.dispatch(Categories.initialData)
+  }
 
   const parseCategories = (categories, navigate) => {
     if (typeof categories === 'object') {
       categories = CategoriesUtils.formartCategories(categories)
       return categories.map(category => (
-        <Button key={category.name} color='inherit' onClick={event => navigate(event, category.path)}>
-          { category.name }
+        <Button
+          key={category.name}
+          color='inherit'
+          onClick={event => navigate(event, `${ROUTES.CATEGORIES.path}/${category.path}`)}
+        >
+          {category.name}
         </Button>
       ))
     }
@@ -32,24 +43,35 @@ const NavBar = (props) => {
   return (
     <AppBar position='static'>
       <Toolbar>
-        <Typography variant='h6' color='inherit' className='flex-grow'>
+        <div className='navbar-container'>
+          <Typography variant='h6' color='inherit' className='flex-grow'>
           Udacity Leadings
-        </Typography>
+          </Typography>
 
-        <div>
-          { categories && parseCategories(categories, navigate) }
+          <Button
+            color='inherit'
+            onClick={event => navigate(event, ROUTES.HOME.path)}
+          >
+            {ROUTES.HOME.title}
+          </Button>
+
+          <div>{categories && parseCategories(categories, navigate)}</div>
         </div>
-
       </Toolbar>
     </AppBar>
   )
 }
 
-const mapDispatchToProps = dispatch => RouterUtils.Router(dispatch)
+const mapStateToProps = ({ categories }) => ({ categories })
+
+const mapDispatchToProps = dispatch => {
+  const navigate = RouterUtils.Router(dispatch)
+  return { dispatch, ...navigate }
+}
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(NavBar)
 )

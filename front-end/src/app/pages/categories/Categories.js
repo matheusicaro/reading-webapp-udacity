@@ -1,24 +1,23 @@
 import React from 'react'
 
 import NavBar from '../../components/NavBar'
+
 import { Dashboard } from '../../components'
 
-const Home = props => {
+const Categories = (props) => {
   return (
     <div style={container}>
-      <NavBar />
-
+      <NavBar categories={props.categories} />
       <Dashboard
         posts={props.posts}
         onClicksPost={props.onClicksPost}
-        onClicksFilter={props.onClicksFilter}
         categories={props.categories}
       />
     </div>
   )
 }
 
-export default Home
+export default Categories
 
 const container = {
   'display': 'grid',

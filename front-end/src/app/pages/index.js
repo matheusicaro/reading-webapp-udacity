@@ -1,9 +1,9 @@
 import HomePage from './home/HomeContainer'
-import ErrorPage from './error/Error'
-import PostPage from './PostDetails/PostDetailsContainer'
+import CategoriesPage from './categories/CategoriesContainer'
+import PostPage from './post/PostDetailsContainer'
 
 export {
   HomePage,
-  ErrorPage,
+  CategoriesPage,
   PostPage
 }
