@@ -51,7 +51,6 @@ export const MenuCard = ({
   const sendForm = data => {
     setFormOpen(!formOpen)
     selectOnClick(formAction, cardId, data)
-    // selectOnClick(item.action, cardId)
   }
 
   return (

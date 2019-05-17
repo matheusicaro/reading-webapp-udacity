@@ -13,7 +13,6 @@ class HomePage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      posts: null,
       aplicatedFilter: false
     }
   }
@@ -23,12 +22,7 @@ class HomePage extends Component {
   }
 
   componentDidMount () {
-    if (this.state.posts === null && this.props.posts === null) this.initialDate()
-    else if (this.props.posts !== null) console.log(this.props.posts)
-    if (this.state.posts !== this.props.posts) {
-      console.log(parseDataPropsToState(this.props.state))
-      // this.setState( = lodash.values(this.props.posts)
-    }
+    if (this.props.posts === null) this.initialDate()
   }
 
   onClicksCard = (action, postId, data) => {
@@ -44,11 +38,9 @@ class HomePage extends Component {
 
   applyingFilter = (filter) => {
     let { posts } = this.state
-    console.log(posts)
     if (filter === FILTER.Date) {
       posts = SortBy.Date(posts)
-      console.log(posts)
-      this.setState({ posts })
+      this.setState(posts)
     }
     //   const newOrderingPosts = HomeUtils.applyingFilter(filter, posts)
     //   this.setState({ posts: newOrderingPosts, filter, appliedFilter: true })
@@ -70,19 +62,12 @@ class HomePage extends Component {
   }
 
   render () {
-    let { posts } = this.props
-    const { aplicatedFilter } = this.state
+    const posts = parseDataPropsToState(this.props.posts)
 
-    if (posts === null) return <div> carregando os dados ...</div>
-
-    // se o filtro estiver aplicado, então os posts vão receber os dados do state que vai ser filtrado
-    // depois que realizar o filtro, ai eu ativo o aplicatedFilter == false para que possa escultar novamente
-    if (aplicatedFilter) {
-      posts = this.setState(posts)
-    }
+    if (posts.length === 0) return <div> carregando os dados ...</div>
 
     return <Home
-      // posts={posts}
+      posts={posts}
       onClicksPost={this.onClicksCard}
       onClicksFilter={this.applyingFilter}
     />
