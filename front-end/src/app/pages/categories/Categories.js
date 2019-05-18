@@ -2,13 +2,13 @@ import React from 'react'
 
 import NavBar from '../../components/NavBar'
 
-import { Dashboard } from '../../components'
+import { PostsDashboard } from '../../components/dashboards'
 
 const Categories = (props) => {
   return (
     <div style={container}>
       <NavBar categories={props.categories} />
-      <Dashboard
+      <PostsDashboard
         posts={props.posts}
         onClicksPost={props.onClicksPost}
         categories={props.categories}

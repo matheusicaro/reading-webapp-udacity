@@ -1,26 +1,44 @@
-import { CARD_BUTTON as ACTION_POST } from '../../app/constants/actions'
+import { values as getValuesOfObjectToOneArray } from 'lodash'
+
+import { POST_TYPE_ACTION } from '../../services/actions/post'
 import { deletePostInState, updateChageInState } from '../../utils'
 
 let newState = {}
 
+const addNewDataInState = (newData, state) => {
+  return state.push({ [newData.id]: newData })
+}
+
+const parseObjectToArrayList = objects => {
+  return getValuesOfObjectToOneArray(objects).map(object => {
+    const newObject = {
+      [object.id]: object
+    }
+    return newObject
+  })
+}
+
 export const posts = (state = null, action) => {
   switch (action.type) {
-    case ACTION_POST.INITIAL_DATA:
-      return {
-        ...state,
-        ...action.payload
-      }
-    case ACTION_POST.CHANGE_VOTE[action.type]:
-      newState = action.payload.post ? updateChageInState(state, action.payload.post) : state
+    case POST_TYPE_ACTION.INITIAL_DATA:
+      newState = parseObjectToArrayList(action.payload)
+      return newState
+
+    case POST_TYPE_ACTION.CREATE_NEW_POST:
+      newState = addNewDataInState(action.payload, state)
+      return newState
+
+    case POST_TYPE_ACTION.CHANGE_VOTE[action.type]:
+      newState = addNewDataInState(action.payload, state)
       return {
         ...newState
       }
-    case ACTION_POST.DELETE:
+    case POST_TYPE_ACTION.DELETE:
       const newPosts = deletePostInState(state, action.payload.post)
       return {
         ...newPosts
       }
-    case ACTION_POST.EDIT:
+    case POST_TYPE_ACTION.EDIT:
       newState = updateChageInState(state, action.payload)
       return {
         ...newState

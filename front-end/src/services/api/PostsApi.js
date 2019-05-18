@@ -37,9 +37,17 @@ const edit = ({ postId, dataUpdate }) => {
   return requestApi.put(options(pathUrl, body, returnJson))
 }
 
+const create = post => {
+  const pathUrl = `/posts`
+  const body = post
+  const returnJson = true
+  return requestApi.post(options(pathUrl, body, returnJson))
+}
+
 export const PostApi = {
   initialData,
   update,
   deletePost,
-  edit
+  edit,
+  create
 }

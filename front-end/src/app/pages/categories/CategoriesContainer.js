@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 
 import Categories from './Categories'
 import { SortBy, DispatchUteis } from '../../../utils'
-import { CARD_BUTTON as ACTION_POST } from '../../constants/actions'
 import { ROUTES } from '../../constants'
-import { Post } from '../../../services/actions'
+import { POST_TYPE_ACTION, PostAction } from '../../../services/actions/post'
 
 const CategoriesPage = (props) => {
   if (props.posts === null) {
@@ -16,12 +15,12 @@ const CategoriesPage = (props) => {
 
   const onClicksCard = (action, postId, data) => {
     if (
-      action === ACTION_POST.CHANGE_VOTE.upVote ||
-      action === ACTION_POST.CHANGE_VOTE.downVote
-    ) this.props.dispatch(Post.updateScore(action, postId))
+      action === POST_TYPE_ACTION.CHANGE_VOTE.upVote ||
+      action === POST_TYPE_ACTION.CHANGE_VOTE.downVote
+    ) this.props.dispatch(PostAction.updateScore(action, postId))
 
-    else if (action === ACTION_POST.DELETE) this.props.dispatch(Post.delete(postId))
-    else if (action === ACTION_POST.EDIT) this.props.dispatch(Post.edit(postId, data))
+    else if (action === POST_TYPE_ACTION.DELETE) this.props.dispatch(PostAction.delete(postId))
+    else if (action === POST_TYPE_ACTION.EDIT) this.props.dispatch(PostAction.edit(postId, data))
     else if (action === ROUTES.NAVIGATE) this.props.navigate(`${ROUTES.POST.path}/${postId}`)
   }
 

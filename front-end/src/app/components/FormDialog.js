@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from 'react'
-import lodash from 'lodash'
+import React, { Fragment } from 'react'
+import { set as setValuesInObject } from 'lodash'
 
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
@@ -8,78 +8,44 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
+import { SelectOptionContainer as FilterByCategories } from './select'
 
 const formDataDefault = {
   title: 'Title do form Default',
   formContext: 'Contexto do form Default'
 }
-export const FormDialog = ({ formOpen, formClose, formData = formDataDefault, sendForm, formToNewPost = false }) => {
-  const { checkedRedux } = useState(false)
-  const { checkedReact } = useState(false)
-  const { checkedUdacity } = useState(false)
 
+export const FormDialog = ({
+  formOpen,
+  formClose,
+  formData = formDataDefault,
+  sendForm,
+  formToNewPost = false
+}) => {
   const { title, formContext, fields } = formData || formDataDefault
-  let data = {}
 
-  const sendData = (event) => {
+  let formDataToBeSent = {}
+
+  const sendData = event => {
     event.preventDefault()
-    sendForm(data)
+    sendForm(formDataToBeSent)
   }
 
-  const incrementValues = (label, value) => {
-    lodash.set(data, label, value)
+  const incrementValues = (key, value) => {
+    setValuesInObject(formDataToBeSent, key, value)
   }
 
-  const checkedCategories = (event) => {
-    console.log(event)
+  const selectCategories = value => {
+    const key = 'category'
+    setValuesInObject(formDataToBeSent, key, value)
   }
 
-  // TODO
-
-  // 1 - fazer os checks desabilitarem os outros qunado selecionado apenas
-
-  // 2 - depois anexar tudo em data atraves do increment values e ai enviar o form
-
-  const getOptionsToNewPost = () => {
-    return (
-      <div>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={checkedReact}
-              onChange={() => checkedCategories('React')}
-              value='React'
-              color='primary'
-            />
-          }
-          label='React'
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={checkedRedux}
-              onChange={() => checkedCategories('Redux')}
-              value='Redux'
-              color='primary'
-            />
-          }
-          label='Redux'
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={checkedUdacity}
-              onChange={() => checkedCategories('Udacity')}
-              value='Udacity'
-              color='primary'
-            />
-          }
-          label='Udacity'
-        />
-      </div>
-    )
+  const filters = {
+    titleOptions: 'Category of Post',
+    React: 'react',
+    Redux: 'redux',
+    Udacity: 'udacity',
+    values: ['React', 'Redux', 'Udacity']
   }
 
   return (
@@ -89,37 +55,38 @@ export const FormDialog = ({ formOpen, formClose, formData = formDataDefault, se
         onClose={() => formClose()}
         aria-labelledby='form-dialog-title'
       >
-        <DialogTitle id='form-dialog-title'>{ title }</DialogTitle>
+        <DialogTitle id='form-dialog-title'>{title}</DialogTitle>
 
         <DialogContent>
-          <DialogContentText>
-            { formContext }
-          </DialogContentText>
-          { fields && fields.map(field => (
-            <TextField
-              key={field.label}
-              autoFocus
-              margin='dense'
-              id='name'
-              onChange={(event) => incrementValues(field.value, event.target.value)}
-              label={field.label}
-              fullWidth
-            />
-          ))}
+          <DialogContentText>{formContext}</DialogContentText>
+          {fields &&
+            fields.map(field => (
+              <TextField
+                key={field.label}
+                autoFocus
+                margin='dense'
+                id='name'
+                onChange={event =>
+                  incrementValues(field.value, event.target.value)
+                }
+                label={field.label}
+                fullWidth
+              />
+            ))}
 
+          <div style={{ marginTop: '5%' }}>
+            {formToNewPost && <FilterByCategories onclick={selectCategories} options={filters} />}
+          </div>
         </DialogContent>
-
-        { formToNewPost && getOptionsToNewPost()}
 
         <DialogActions>
           <Button onClick={() => formClose()} color='primary'>
-              Cancel
+            Cancel
           </Button>
           <Button onClick={sendData} color='primary'>
-              Send
+            Send
           </Button>
         </DialogActions>
-
       </Dialog>
     </Fragment>
   )

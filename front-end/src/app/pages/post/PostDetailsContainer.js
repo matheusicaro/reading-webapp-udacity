@@ -5,7 +5,9 @@ import GeneraId from 'uuid'
 
 import PostDetails from './PostDetails'
 import { RouterUtils } from '../../../utils'
-import { Post as PostAction, Comments } from '../../../services/actions'
+import { PostAction } from '../../../services/actions/post'
+import { CommentsAction } from '../../../services/actions/comments'
+
 import { ROUTES } from '../../constants'
 
 import PostDetailsUtils from './PostDetailsUtils'
@@ -20,7 +22,7 @@ class PostPage extends Component {
   }
 
   getComments (postId) {
-    this.props.dispatch(Comments.getById(postId))
+    this.props.dispatch(CommentsAction.getById(postId))
   }
 
   componentWillMount () {
@@ -55,16 +57,16 @@ class PostPage extends Component {
     if (
       action === ACTION_OF_POST_OR_COMMENT.CHANGE_VOTE.upVote ||
       action === ACTION_OF_POST_OR_COMMENT.CHANGE_VOTE.downVote
-    ) this.props.dispatch(Comments.updateScore(action, commentId))
+    ) this.props.dispatch(CommentsAction.updateScore(action, commentId))
 
     else if (action === ACTION_OF_POST_OR_COMMENT.DELETE) {
-      this.props.dispatch(Comments.delete(commentId))
+      this.props.dispatch(CommentsAction.delete(commentId))
       const newPost = this.state.post
       newPost.commentCount -= 1
       this.setState(newPost)
     } else if (action === ACTION_OF_POST_OR_COMMENT.EDIT) {
       data.timestamp = new Date().getTime()
-      this.props.dispatch(Comments.edit(commentId, data))
+      this.props.dispatch(CommentsAction.edit(commentId, data))
     } else if (action === ROUTES.NAVIGATE) this.props.navigate(`${ROUTES.POST.path}/${commentId}`)
   };
 
@@ -72,7 +74,7 @@ class PostPage extends Component {
     data.timestamp = new Date().getTime()
     data.id = GeneraId(data.body, data.author)
     data.parentId = this.state.post.id
-    this.props.dispatch(Comments.sendComment(data))
+    this.props.dispatch(CommentsAction.sendComment(data))
   }
   navigateToHome () {
     this.props.navigate(ROUTES.HOME.path)

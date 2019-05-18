@@ -1,0 +1,14 @@
+
+.home-container {
+    display: grid;
+    grid-gap: 5%;
+    justify-items: center;
+    width: 100%
+}
+.filter-and-createNewPost {
+    display: grid;
+    grid-auto-flow: column;
+    width: 25%;
+    grid-gap: 10%;
+    align-items: center;
+}
