@@ -7,9 +7,9 @@ import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 
-import { RouterUtils, CategoriesUtils } from '../../utils'
-import { Categories } from '../../services/actions'
-import { ROUTES } from '../constants'
+import { RouterUtils, CategoriesUtils } from '../../../utils'
+import { Categories } from '../../../services/actions'
+import { ROUTES } from '../../constants'
 
 import './style.css'
 

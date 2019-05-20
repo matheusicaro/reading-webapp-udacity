@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-import { PostAction } from '../../../services/actions/post'
+import { PostAction, POST_TYPE_ACTION } from '../../../services/actions/post'
+import { ROUTES } from '../../constants'
 
-// import { ROUTES } from '../../constants'
-import { RouterUtils, parseDataPropsToState } from '../../../utils'
+import { RouterUtils } from '../../../utils'
 
 import Home from './Home'
 
@@ -26,27 +26,29 @@ class HomePage extends Component {
   }
 
   onClicks = (action, data) => {
-    this.props.dispatch(PostAction.createNewPost(data))
-    // if (
-    //   action === POST_TYPE_ACTION.CHANGE_VOTE.upVote ||
-    //   action === POST_TYPE_ACTION.CHANGE_VOTE.downVote
-    // ) this.props.dispatch(PostAction.updateScore(action, postId))
-
-    // else if (action === POST_TYPE_ACTION.DELETE) this.props.dispatch(PostAction.delete(postId))
-    // else if (action === POST_TYPE_ACTION.EDIT) this.props.dispatch(PostAction.edit(postId, data))
-    // else if (action === ROUTES.NAVIGATE) this.props.navigate(`${ROUTES.POST.path}/${postId}`)
-  };
-
-  applyingFilter = (filter, data) => {
-
+    console.log(action)
+    if (
+      action === POST_TYPE_ACTION.CHANGE_VOTE.upVote ||
+      action === POST_TYPE_ACTION.CHANGE_VOTE.downVote
+    ) {
+      const postId = data
+      this.props.dispatch(PostAction.updateScore(action, postId))
+    } else if (action === POST_TYPE_ACTION.DELETE) {
+      const postId = data
+      this.props.dispatch(PostAction.delete(postId))
+    } else if (action === POST_TYPE_ACTION.EDIT) {
+      this.props.dispatch(PostAction.edit(data.cardId, data.update))
+    } else if (action === POST_TYPE_ACTION.NAVIGATE) {
+      const postId = data
+      const path = ROUTES.returnPathToPostId(postId)
+      this.props.navigate(path)
+    }
   }
 
   render () {
     const { posts } = this.props
 
     if (posts === null) return <div> carregando os dados ...</div>
-
-    // TODOR, CONVERTER DADOS NOVAMENTE PARA O FORMATO DA API POIS O CODIGO FOI FEITO EM CIMA DO FORMATO DA API
 
     return <Home
       posts={posts}
@@ -56,7 +58,7 @@ class HomePage extends Component {
   }
 }
 
-const mapStateToProps = ({ posts, categories }) => ({ posts, categories })
+const mapStateToProps = ({ posts }) => ({ posts })
 
 const mapDispatchToProps = dispatch => {
   const navigate = RouterUtils.Router(dispatch)

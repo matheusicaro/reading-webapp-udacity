@@ -3,9 +3,9 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
-import { FormDialog as Form } from '../'
+import FormDialogGeneric from '../FormDialog'
 
-const NewPost = ({ menuHandleClick, formOpen, setFormOpen, sendForm }) => {
+const NewPostForm = ({ menuHandleClick, formOpen, setFormOpen, sendForm }) => {
   const formDataNewPost = {
     title: 'Create New Post',
     formContext: '',
@@ -24,7 +24,7 @@ const NewPost = ({ menuHandleClick, formOpen, setFormOpen, sendForm }) => {
         </Typography>
       </Button>
 
-      <Form
+      <FormDialogGeneric
         formOpen={formOpen}
         formClose={() => setFormOpen(!formOpen)}
         formData={formDataNewPost} sendForm={sendForm}
@@ -33,4 +33,4 @@ const NewPost = ({ menuHandleClick, formOpen, setFormOpen, sendForm }) => {
   )
 }
 
-export default NewPost
+export default NewPostForm

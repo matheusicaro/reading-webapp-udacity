@@ -1,6 +1,5 @@
 export * from './StoreUtils'
 export * from './DispatchUtils'
-export * from './StateReducerUtils'
 export * from './RoutesUtils'
 export * from './CategoriesUtils'
 export * from './OrderItems'

@@ -8,14 +8,14 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import { SelectOptionContainer as FilterByCategories } from './select'
+import { SelectOptionContainer as FilterByCategories } from '../selects'
 
 const formDataDefault = {
   title: 'Title do form Default',
   formContext: 'Contexto do form Default'
 }
 
-export const FormDialog = ({
+const FormDialogGeneric = ({
   formOpen,
   formClose,
   formData = formDataDefault,
@@ -91,3 +91,5 @@ export const FormDialog = ({
     </Fragment>
   )
 }
+
+export default FormDialogGeneric

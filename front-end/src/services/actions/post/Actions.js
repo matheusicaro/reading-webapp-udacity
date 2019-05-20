@@ -29,8 +29,8 @@ const deletePost = (postId, posts) => dispatch => {
   return DispatchUteis.withoutReturnApi(dispatch, PostApi.deletePost, actionDeletePost, data, returnData)
 }
 
-const editPost = (postId, dataUpdate) => dispatch => {
-  const data = { postId, dataUpdate }
+const editPost = (postId, update) => dispatch => {
+  const data = { postId, update }
   return DispatchUteis.withReturnApi(dispatch, PostApi.edit, actionEditPost, data)
 }
 

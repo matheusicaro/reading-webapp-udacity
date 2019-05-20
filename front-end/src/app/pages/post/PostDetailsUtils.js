@@ -1,10 +1,8 @@
-import lodash from 'lodash'
-
 import { CARD_BUTTON as ACTION_OF_BUTTON } from '../../constants/actions'
 
 const getPostId = (posts, id) => {
-  const post = { ...lodash.valuesIn(posts).filter(post => post.id === id) }
-  return post[0]
+  const post = posts.filter(existPostWith => existPostWith[id])
+  return post[0][id]
 }
 
 const updateState = (action, oldPost, data) => {

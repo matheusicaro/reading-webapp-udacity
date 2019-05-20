@@ -3,9 +3,9 @@ import GeneraId from 'uuid'
 import { set as setValuesInObject } from 'lodash'
 
 import NewPost from './NewPost'
-import { POST_TYPE_ACTION } from '../../../services/actions/post'
+import { POST_TYPE_ACTION } from '../../../../services/actions/post'
 
-const NewPostContainer = (props) => {
+const NewPostFormContainer = (props) => {
   const [formOpen, setFormOpen] = useState(false)
 
   const menuHandleClick = event => {
@@ -35,4 +35,4 @@ const NewPostContainer = (props) => {
   )
 }
 
-export default NewPostContainer
+export default NewPostFormContainer

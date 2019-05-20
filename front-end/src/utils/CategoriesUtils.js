@@ -1,8 +1,9 @@
-import lodash from 'lodash'
+import { forIn } from 'lodash'
 
 const formartCategories = (categories) => {
+  console.log('categories', categories)
   const parseData = []
-  lodash.forIn(categories, (values, key) =>
+  forIn(categories, (values, key) =>
     values.map(category => parseData.push({ ...category })
     ))
   return parseData

@@ -1,10 +1,16 @@
-import lodash from 'lodash'
+import { values, forIn as forEachInObject } from 'lodash'
+import { parseObjectToArrayList } from '../services/reducers/PostsReducer'
 
-// TODO: SAVE FUNCTIONS
-const Date = (object) => lodash.values(object).sort(compareByTimeStamp)
-const BiggerScore = (object) => lodash.values(object).sort(compareByBiggerScore)
-const mallerScore = (object) => lodash.values(object).sort(compareBySmallerScore)
-const category = (category, object) => lodash.values(object).filter(value => value.category === category)
+const Date = (object) => values(object).sort(compareByTimeStamp)
+const BiggerScore = (object) => values(object).sort(compareByBiggerScore)
+const mallerScore = (object) => values(object).sort(compareBySmallerScore)
+// const category = (category, object) => values(object).filter(value => value.category === category)
+const category = (category, object) => {
+  let newObject = []
+  object.map(value => forEachInObject(value, valuesOfPost => newObject.push(valuesOfPost)))
+  newObject = parseObjectToArrayList(newObject.filter(post => post.category === category))
+  return newObject
+}
 
 const compareByTimeStamp = (a, b) => {
   if (a.timestamp > b.timestamp) { return -1 }
@@ -33,6 +39,6 @@ export const SortBy = {
 
 export const parseDataPropsToState = (posts) => {
   const newPosts = []
-  lodash.values(posts).map(value => newPosts.push(value))
+  values(posts).map(value => newPosts.push(value))
   return newPosts
 }

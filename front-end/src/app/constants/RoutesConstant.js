@@ -16,5 +16,6 @@ export const ROUTES = {
     title: 'Categories',
     path: '/categories',
     page: CategoriesPage
-  }
+  },
+  returnPathToPostId: (postId) => `/post/${postId}`
 }

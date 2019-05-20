@@ -23,6 +23,7 @@ const deleteComment = (commentId) => dispatch => {
 const updateScore = (action, commentId) => dispatch => {
   const scoreAction = action === COMMENTS_TYPE_ACTION.CHANGE_VOTE.upVote ? actionUpVote : actionDownVote
   const data = { action, commentId }
+  console.log(commentId)
   return DispatchUteis.withReturnApi(dispatch, CommentsApi.update, scoreAction, data)
 }
 

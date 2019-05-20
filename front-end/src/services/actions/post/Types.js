@@ -12,7 +12,8 @@ export const POST_TYPE_ACTION = {
   CREATE_COMMENT: 'CREATE_COMMENT',
   CATEGORIES: {
     INITIAL_DATA: 'INITIAL_DATA_CATEGORIES'
-  }
+  },
+  NAVIGATE: 'NAVIGATE'
 }
 
 const actionEditPost = payload => {

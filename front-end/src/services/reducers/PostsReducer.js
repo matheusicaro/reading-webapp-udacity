@@ -1,22 +1,10 @@
-import { values as getValuesOfObjectToOneArray } from 'lodash'
+import {
+  values as getValuesOfObjectToOneArray
+} from 'lodash'
 
 import { POST_TYPE_ACTION } from '../../services/actions/post'
-import { deletePostInState, updateChageInState } from '../../utils'
 
 let newState = {}
-
-const addNewDataInState = (newData, state) => {
-  return state.push({ [newData.id]: newData })
-}
-
-const parseObjectToArrayList = objects => {
-  return getValuesOfObjectToOneArray(objects).map(object => {
-    const newObject = {
-      [object.id]: object
-    }
-    return newObject
-  })
-}
 
 export const posts = (state = null, action) => {
   switch (action.type) {
@@ -29,21 +17,55 @@ export const posts = (state = null, action) => {
       return newState
 
     case POST_TYPE_ACTION.CHANGE_VOTE[action.type]:
-      newState = addNewDataInState(action.payload, state)
-      return {
-        ...newState
+      const { comment } = action.payload
+      if (comment) {
+        return state
+      } else {
+        newState = updateChageInState(state, action.payload.post)
+        return newState
       }
     case POST_TYPE_ACTION.DELETE:
-      const newPosts = deletePostInState(state, action.payload.post)
-      return {
-        ...newPosts
-      }
+      newState = deletePostInState(state, action.payload)
+      return newState
+
     case POST_TYPE_ACTION.EDIT:
       newState = updateChageInState(state, action.payload)
-      return {
-        ...newState
-      }
+      return newState
     default:
       return state
   }
+}
+
+const addNewDataInState = (newData, state) => {
+  return state.push({ [newData.id]: newData })
+}
+
+export const parseObjectToArrayList = objects => {
+  return getValuesOfObjectToOneArray(objects).map(object => {
+    const newObject = {
+      [object.id]: object
+    }
+    return newObject
+  })
+}
+
+const deletePostInState = (oldState, idPost) => {
+  const newPosts = oldState.filter(existPostWith => !(existPostWith[idPost]))
+  return newPosts
+}
+
+const updateChageInState = (oldState, updatedPost) => {
+  const id = updatedPost.id
+  let positionOldPost = ''
+  const newPost = { [id]: updatedPost }
+
+  const newState = oldState.filter((existPostWith, index) => {
+    if (existPostWith[id]) {
+      positionOldPost = index
+      return false
+    } else { return true }
+  })
+
+  newState.splice(positionOldPost, 0, newPost)
+  return newState
 }

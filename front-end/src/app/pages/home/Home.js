@@ -1,9 +1,9 @@
 import React from 'react'
 
-import NavBar from '../../components/NavBar'
+import NavBar from '../../components/navbar/NavBar'
 import { PostsDashboard } from '../../components/dashboards'
-import { SelectOptionContainer as FilterByCategories } from '../../components/select'
-import { NewPostContainer as NewPost } from '../../components/forms'
+import { SelectOptionContainer as FilterByCategories } from '../../components/selects'
+import { NewPostContainer as NewPostForm } from '../../components/forms/posts'
 
 import './style.css'
 
@@ -22,7 +22,7 @@ const Home = props => {
 
       <div className='filter-and-createNewPost' >
         <FilterByCategories options={filters} onclick={props.onClicksFilter} />
-        <NewPost onclick={props.onClicksFilter} />
+        <NewPostForm onclick={props.onClicksFilter} />
       </div>
 
       <PostsDashboard

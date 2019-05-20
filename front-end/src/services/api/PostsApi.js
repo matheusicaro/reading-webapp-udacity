@@ -30,9 +30,9 @@ const deletePost = postId => {
   return requestApi.delete(options(pathUrl, body, returnJson))
 }
 
-const edit = ({ postId, dataUpdate }) => {
-  const pathUrl = `/posts/${postId}`
-  const body = dataUpdate
+const edit = data => {
+  const pathUrl = `/posts/${data.postId}`
+  const body = data.update
   const returnJson = true
   return requestApi.put(options(pathUrl, body, returnJson))
 }

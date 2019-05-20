@@ -1,0 +1,13 @@
+.button {
+    min-width: 0px;
+}
+
+.text {
+    margin: 0px 10px;
+    font-style: initial
+}
+
+.text-none {
+    margin: 0px 0px;
+    font-style: initial
+}

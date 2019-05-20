@@ -1,0 +1,22 @@
+.container-border {
+    display: grid;
+    grid-gap: 0%;
+    border-width: unset;
+    padding: 5%;
+    background: azure;
+    border-radius: 5px;
+}
+
+.grid-container {
+    display: grid;
+    grid-auto-flow: column
+}
+
+.button { 
+    min-width: 0px
+}
+
+.text-button {
+    margin: 0 1%;
+    font-style: initial
+}

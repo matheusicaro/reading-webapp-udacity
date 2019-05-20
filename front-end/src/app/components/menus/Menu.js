@@ -15,7 +15,8 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import Button from '@material-ui/core/Button'
 import SvgIcon from '@material-ui/core/SvgIcon'
-import { FormDialog as Form } from '../'
+
+import FormDialogGeneric from '../forms/FormDialog'
 
 const defaultItems = [
   { text: 'element-1 [share]', action: 'share' },
@@ -23,7 +24,7 @@ const defaultItems = [
   { text: 'element-3 [delete] ', action: 'delete' }
 ]
 
-export const MenuCard = ({
+export const MenuOpenByClickInButton = ({
   button = {},
   items = defaultItems,
   selectOnClick = {},
@@ -45,21 +46,27 @@ export const MenuCard = ({
       setFormData(item.form.data)
       setAction(item.action)
       setFormOpen(!formOpen)
-    } else selectOnClick(item.action, cardId)
+      setMenuOpen(!menuOpen)
+    } else {
+      selectOnClick(item.action, cardId)
+      setMenuOpen(!menuOpen)
+    }
   }
 
   const sendForm = data => {
     setFormOpen(!formOpen)
-    selectOnClick(formAction, cardId, data)
+    selectOnClick(formAction, { cardId, update: data })
   }
 
   return (
     <React.Fragment>
+
       <Button style={{ minWidth: '0px' }} onClick={menuHandleClick}>
         <SvgIcon>
           <path d={button.icon} />
         </SvgIcon>
       </Button>
+
       <Menu anchorEl={anchorEl} open={menuOpen} onClose={menuHandleClick}>
         {items.map(item => (
           <MenuItem key={item.text} onClick={event => itemHandleClick(item)}>
@@ -68,7 +75,12 @@ export const MenuCard = ({
         ))}
       </Menu>
 
-      <Form formOpen={formOpen} formClose={() => setFormOpen(!formOpen)} formData={formData} sendForm={sendForm} />
+      <FormDialogGeneric
+        formOpen={formOpen}
+        formClose={() => setFormOpen(!formOpen)}
+        formData={formData}
+        sendForm={sendForm}
+      />
 
     </React.Fragment>
   )

@@ -5,13 +5,12 @@ import GeneraId from 'uuid'
 
 import PostDetails from './PostDetails'
 import { RouterUtils } from '../../../utils'
-import { PostAction } from '../../../services/actions/post'
-import { CommentsAction } from '../../../services/actions/comments'
+import { PostAction, POST_TYPE_ACTION } from '../../../services/actions/post'
+import { CommentsAction, COMMENTS_TYPE_ACTION } from '../../../services/actions/comments'
 
 import { ROUTES } from '../../constants'
 
 import PostDetailsUtils from './PostDetailsUtils'
-import { CARD_BUTTON as ACTION_OF_POST_OR_COMMENT } from '../../constants/actions'
 
 class PostPage extends Component {
   constructor (props) {
@@ -34,40 +33,48 @@ class PostPage extends Component {
   }
 
   componentDidMount () {
-    if (this.state.post !== null) { this.getComments(this.state.post.id) }
+    if (this.state.post !== null) {
+      this.getComments(this.state.post.id)
+    }
   }
 
-  onClicksPost = (action, postId, data) => {
+  onClicksInPost = (action, data) => {
     if (
-      action === ACTION_OF_POST_OR_COMMENT.CHANGE_VOTE.upVote ||
-      action === ACTION_OF_POST_OR_COMMENT.CHANGE_VOTE.downVote
+      action === POST_TYPE_ACTION.CHANGE_VOTE.upVote ||
+      action === POST_TYPE_ACTION.CHANGE_VOTE.downVote
     ) {
+      const postId = data
       this.props.dispatch(PostAction.updateScore(action, postId))
       this.setState(PostDetailsUtils.updateState(action, this.state.post))
-    } else if (action === ACTION_OF_POST_OR_COMMENT.DELETE) {
+    } else if (action === POST_TYPE_ACTION.DELETE) {
+      const postId = data
       this.props.dispatch(PostAction.delete(postId))
       this.navigateToHome()
-    } else if (action === ACTION_OF_POST_OR_COMMENT.EDIT) {
-      this.props.dispatch(PostAction.edit(postId, data))
-      this.setState(PostDetailsUtils.updateState(action, this.state.post, data))
+    } else if (action === POST_TYPE_ACTION.EDIT) {
+      const { cardId, update } = data
+      this.props.dispatch(PostAction.edit(cardId, update))
+      this.setState(PostDetailsUtils.updateState(action, this.state.post, update))
     }
   };
 
-  onClicksComment = (action, commentId, data) => {
+  onClicksInComment = (action, data) => {
     if (
-      action === ACTION_OF_POST_OR_COMMENT.CHANGE_VOTE.upVote ||
-      action === ACTION_OF_POST_OR_COMMENT.CHANGE_VOTE.downVote
-    ) this.props.dispatch(CommentsAction.updateScore(action, commentId))
-
-    else if (action === ACTION_OF_POST_OR_COMMENT.DELETE) {
-      this.props.dispatch(CommentsAction.delete(commentId))
+      action === COMMENTS_TYPE_ACTION.CHANGE_VOTE.upVote ||
+      action === COMMENTS_TYPE_ACTION.CHANGE_VOTE.downVote
+    ) {
+      const cardId = data
+      this.props.dispatch(CommentsAction.updateScore(action, cardId))
+    } else if (action === COMMENTS_TYPE_ACTION.DELETE) {
+      const cardId = data
+      this.props.dispatch(CommentsAction.delete(cardId))
       const newPost = this.state.post
       newPost.commentCount -= 1
       this.setState(newPost)
-    } else if (action === ACTION_OF_POST_OR_COMMENT.EDIT) {
-      data.timestamp = new Date().getTime()
-      this.props.dispatch(CommentsAction.edit(commentId, data))
-    } else if (action === ROUTES.NAVIGATE) this.props.navigate(`${ROUTES.POST.path}/${commentId}`)
+    } else if (action === COMMENTS_TYPE_ACTION.EDIT) {
+      const { cardId, update } = data
+      update.timestamp = new Date().getTime()
+      this.props.dispatch(CommentsAction.edit(cardId, update))
+    }
   };
 
   onClickSendComment = (action, data) => {
@@ -88,8 +95,8 @@ class PostPage extends Component {
     return (
       <PostDetails
         post={post}
-        onClicksPost={this.onClicksPost}
-        onClicksComment={this.onClicksComment}
+        onClicksPost={this.onClicksInPost}
+        onClicksComment={this.onClicksInComment}
         onClickSendComment={this.onClickSendComment}
       />
     )

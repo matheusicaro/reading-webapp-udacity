@@ -1,4 +1,5 @@
-import { CARD_BUTTON as ACTION_POST } from '../actions'
+import { POST_TYPE_ACTION } from '../../../services/actions/post'
+
 import { like, dislike, menuDots, comments } from '../../assets/icons'
 
 const postButtonsMenu = {
@@ -10,7 +11,7 @@ const postButtonsMenu = {
   // Items do menu que ao receber um click, tem opção de ação, e podem abrir um formulario.
   items: [
     {
-      action: ACTION_POST.EDIT,
+      action: POST_TYPE_ACTION.EDIT,
       form: {
         data: {
           title: 'Edit Post', // TODO: Translate
@@ -23,7 +24,7 @@ const postButtonsMenu = {
       text: 'Edit Post' // TODO: Translate
     },
     {
-      action: ACTION_POST.DELETE,
+      action: POST_TYPE_ACTION.DELETE,
       text: 'Delet Post' // TODO: Translate
     }
   ]
@@ -38,7 +39,7 @@ const commentButtonsMenu = {
   // Items do menu que ao receber um click, tem opção de ação, e podem abrir um formulario.
   items: [
     {
-      action: ACTION_POST.EDIT,
+      action: POST_TYPE_ACTION.EDIT,
       form: {
         data: {
           title: 'Edit comment', // TODO: Translate
@@ -50,33 +51,32 @@ const commentButtonsMenu = {
       text: 'Edit' // TODO: Translate
     },
     {
-      action: ACTION_POST.DELETE,
+      action: POST_TYPE_ACTION.DELETE,
       text: 'Delet Comment' // TODO: Translate
     }
   ]
 }
 
 const footerButtons = {
-  buttonVoteUp: {
-    action: ACTION_POST.CHANGE_VOTE.upVote,
+  voteUp: {
+    action: POST_TYPE_ACTION.CHANGE_VOTE.upVote,
     icon: like
   },
-  buttonVoteDown: {
-    action: ACTION_POST.CHANGE_VOTE.downVote,
+  voteDown: {
+    action: POST_TYPE_ACTION.CHANGE_VOTE.downVote,
     icon: dislike
   },
   comments: {
-    action: 'NAVIGATE',
     icon: comments
   }
 }
 
-export const CARD_POST = {
-  menuDots: postButtonsMenu,
+export const CARD_POST_BUTTONS = {
+  menu: postButtonsMenu,
   footer: footerButtons
 }
 
-export const CARD_COMMENT = {
-  menuDots: commentButtonsMenu,
+export const CARD_COMMENT_BUTTONS = {
+  menu: commentButtonsMenu,
   footer: footerButtons
 }

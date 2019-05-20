@@ -1,33 +1,32 @@
-.post-card-content {
+.card-container {
     display: grid;
     padding: 3%;
     grid-gap: 10px;
 }
 
-.post-card-content-title-button {
-    max-width: 20%;
-    justify-self: end;
-    
+.title,
+.footer {
+    display: grid;
+    grid-auto-flow: column;
 }
 
-.post-card-content-line {
+.title-button {
+    max-width: 20%;
+    justify-self: end;
+}
+
+.content-line {
     border: solid;
     border: solid;
     border-width: 1px;
     border-color: gainsboro;
 }
 
-.post-card-content-title,
-.post-card-content-iten-footer {
-    display: grid;
-    grid-auto-flow: column;
+.button-comment {
+    justify-items: end
 }
 
 .post-card-title-link {
     color: #3F51B5;
     cursor: pointer;
-}
-
-.button-comments {
-    justify-items: end
 }
