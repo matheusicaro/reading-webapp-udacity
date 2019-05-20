@@ -4,11 +4,10 @@ import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography'
 import { CommentCard } from '../card'
 
-import { SortBy } from '../../../utils'
+import { sortCommentsByBigScore } from '../../../utils'
 
 const Comments = props => {
-  const comments = SortBy.BiggerScore(props.comments)
-
+  const comments = sortCommentsByBigScore(props.comments)
   return (
     <div>
 
@@ -20,7 +19,7 @@ const Comments = props => {
       </Typography>
 
       <div style={styleContainerList}>
-        { comments.map((coment, index) => (
+        { comments.length > 0 && comments.map((coment, index) => (
           <CommentCard
             key={index}
             card={coment}

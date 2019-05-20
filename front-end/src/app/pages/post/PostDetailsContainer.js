@@ -7,10 +7,10 @@ import PostDetails from './PostDetails'
 import { RouterUtils } from '../../../utils'
 import { PostAction, POST_TYPE_ACTION } from '../../../services/actions/post'
 import { CommentsAction, COMMENTS_TYPE_ACTION } from '../../../services/actions/comments'
-
-import { ROUTES } from '../../constants'
+import Warnings from '../../components/Warnings'
 
 import PostDetailsUtils from './PostDetailsUtils'
+import { ROUTES } from '../../constants'
 
 class PostPage extends Component {
   constructor (props) {
@@ -83,14 +83,18 @@ class PostPage extends Component {
     data.parentId = this.state.post.id
     this.props.dispatch(CommentsAction.sendComment(data))
   }
-  navigateToHome () {
-    this.props.navigate(ROUTES.HOME.path)
+  initialData () {
+    this.props.dispatch(PostAction.initialData)
   }
 
   render () {
     let { post } = this.state
 
-    if (post === null) this.navigateToHome()
+    if (post === null || this.props.posts === null) {
+      this.initialData()
+      this.props.navigate(ROUTES.HOME.path)
+      return <Warnings message={'Loading...'} />
+    }
 
     return (
       <PostDetails

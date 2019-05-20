@@ -1,11 +1,15 @@
 
-.home-container {
+.pages-container {
     display: grid;
-    grid-gap: 5%;
     justify-items: center;
     width: 100%
 }
-.filter-and-createNewPost {
+
+.pages-dashboards {
+    width: 70%
+}
+.pages-filter-createNewPost {
+    margin: 5% 0;
     display: grid;
     grid-auto-flow: column;
     width: 25%;

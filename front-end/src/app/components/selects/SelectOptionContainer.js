@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import SelectOption from './SelectOption'
+import { POST_TYPE_ACTION as ACTION } from '../../../services/actions/post'
 
 const SelectOptionContainer = (props) => {
   const [open, setOpen] = useState(false)
@@ -9,8 +10,9 @@ const SelectOptionContainer = (props) => {
   const handleChange = event => {
     event.preventDefault()
     setSelect(event.target.value)
-    const selected = props.options[event.target.value.replace(' ', '_')]
-    props.onclick(selected)
+
+    const selected = props.options[event.target.value.replace(' ', '')]
+    props.onclick(ACTION.SELECT_ORDER_BY_OPTION, selected)
   }
 
   const handleOpen = () => {

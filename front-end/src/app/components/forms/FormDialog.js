@@ -35,9 +35,9 @@ const FormDialogGeneric = ({
     setValuesInObject(formDataToBeSent, key, value)
   }
 
-  const selectCategories = value => {
+  const selectCategories = (action, optionSelected) => {
     const key = 'category'
-    setValuesInObject(formDataToBeSent, key, value)
+    setValuesInObject(formDataToBeSent, key, optionSelected)
   }
 
   const filters = {
@@ -83,7 +83,7 @@ const FormDialogGeneric = ({
           <Button onClick={() => formClose()} color='primary'>
             Cancel
           </Button>
-          <Button onClick={sendData} color='primary'>
+          <Button onClick={sendData} color='primary' >
             Send
           </Button>
         </DialogActions>

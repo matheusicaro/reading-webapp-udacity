@@ -7,7 +7,8 @@ const withReturnApi = (dispatch, call, action, data) => {
     })
     .catch(error => {
       if (error) {
-        window.alert('ERROR IN CALL API: console.log')
+        window.alert('*** ERROR *** - CALL API: Open console of browser and verify Api Server.')
+        console.log('*** ERROR *** - CALL API: Api Server not found')
         console.log('------>')
         console.log(error)
         console.log('<------')
@@ -27,7 +28,8 @@ const withoutReturnApi = (
       dispatch(action(returnData ? data : null))
     })
     .catch(error => {
-      window.alert('ERROR IN CALL API: console.log')
+      window.alert('*** ERROR *** - CALL API: Open console of browser and verify Api Server.')
+      console.log('*** ERROR *** - CALL API: Api Server not found')
       console.log('------>')
       console.log(error)
       console.log('<------')

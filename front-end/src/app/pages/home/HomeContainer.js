@@ -8,6 +8,7 @@ import { ROUTES } from '../../constants'
 import { RouterUtils } from '../../../utils'
 
 import Home from './Home'
+import Warnings from '../../components/Warnings'
 
 class HomePage extends Component {
   constructor (props) {
@@ -21,12 +22,11 @@ class HomePage extends Component {
     this.props.dispatch(PostAction.initialData)
   }
 
-  componentDidMount () {
+  componentWillMount () {
     if (this.props.posts === null) this.initialDate()
   }
 
   onClicks = (action, data) => {
-    console.log(action)
     if (
       action === POST_TYPE_ACTION.CHANGE_VOTE.upVote ||
       action === POST_TYPE_ACTION.CHANGE_VOTE.downVote
@@ -42,13 +42,18 @@ class HomePage extends Component {
       const postId = data
       const path = ROUTES.returnPathToPostId(postId)
       this.props.navigate(path)
+    } else if (action === POST_TYPE_ACTION.SELECT_ORDER_BY_OPTION) {
+      const optionFilter = data || window.alert('** ERROR IN FILTER, BUTTON UNDEFINED')
+      this.props.dispatch(PostAction.orderBy(optionFilter))
+    } else if (action === POST_TYPE_ACTION.CREATE_NEW_POST) {
+      this.props.dispatch(PostAction.createNewPost(data))
     }
   }
 
   render () {
     const { posts } = this.props
 
-    if (posts === null) return <div> carregando os dados ...</div>
+    if (posts === null) return <Warnings message={'Loading...'} />
 
     return <Home
       posts={posts}

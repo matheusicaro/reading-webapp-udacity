@@ -13,7 +13,8 @@ export const POST_TYPE_ACTION = {
   CATEGORIES: {
     INITIAL_DATA: 'INITIAL_DATA_CATEGORIES'
   },
-  NAVIGATE: 'NAVIGATE'
+  NAVIGATE: 'NAVIGATE',
+  SELECT_ORDER_BY_OPTION: 'SELECT_ORDER_BY_OPTION'
 }
 
 const actionEditPost = payload => {
@@ -62,11 +63,19 @@ const actionReceiveData = payload => {
   }
 }
 
+const actionOrderByOption = payload => {
+  return {
+    type: POST_TYPE_ACTION.SELECT_ORDER_BY_OPTION,
+    payload
+  }
+}
+
 export {
   actionEditPost,
   actionDeletePost,
   actionDownVote,
   actionUpVote,
   actionReceiveData,
-  actionCreatePost
+  actionCreatePost,
+  actionOrderByOption
 }

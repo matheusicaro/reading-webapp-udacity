@@ -11,7 +11,7 @@ const ScoreButton = ({ onclick, id, text }) => {
     <Typography component='p'>
       <Button style={style.button} onClick={() => onclick(CARD_POST_BUTTONS.footer.voteUp.action, id)} >
         <SvgIcon>
-          <path d={CARD_POST_BUTTONS.footer.voteUp.icon} />
+          <path fill='#0dbb0d' d={CARD_POST_BUTTONS.footer.voteUp.icon} />
         </SvgIcon>
       </Button>
 
@@ -19,7 +19,7 @@ const ScoreButton = ({ onclick, id, text }) => {
 
       <Button style={style.button} onClick={() => onclick(CARD_POST_BUTTONS.footer.voteDown.action, id)} >
         <SvgIcon>
-          <path d={CARD_POST_BUTTONS.footer.voteDown.icon} />
+          <path fill='#ff0000'd={CARD_POST_BUTTONS.footer.voteDown.icon} />
         </SvgIcon>
       </Button>
     </Typography>

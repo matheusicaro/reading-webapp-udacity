@@ -2,7 +2,7 @@ import React from 'react'
 import PostCard from './PostCard'
 
 const PostContainer = ({
-  card,
+  card = {},
   onclick,
   menuDots,
   buttons,

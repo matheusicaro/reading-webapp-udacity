@@ -6,7 +6,8 @@ import { POST_TYPE_ACTION, actionReceiveData,
   actionCreatePost,
   actionDownVote,
   actionEditPost,
-  actionUpVote } from './Types'
+  actionUpVote,
+  actionOrderByOption } from './Types'
 
 const initialData = dispatch => {
   return DispatchUteis.withReturnApi(dispatch, PostApi.initialData, actionReceiveData)
@@ -34,10 +35,15 @@ const editPost = (postId, update) => dispatch => {
   return DispatchUteis.withReturnApi(dispatch, PostApi.edit, actionEditPost, data)
 }
 
+const orderBy = (option) => dispatch => {
+  return dispatch(actionOrderByOption(option))
+}
+
 export const PostAction = {
   initialData,
   updateScore,
   delete: deletePost,
   edit: editPost,
-  createNewPost
+  createNewPost,
+  orderBy
 }
