@@ -40,9 +40,8 @@ const style = {
 }
 
 ScoreButton.propTypes = {
-  id: PropTypes.object.isRequired,
-  onclick: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  onclick: PropTypes.func.isRequired
 }
 
 export default ScoreButton

@@ -26,7 +26,7 @@ PostContainer.propTypes = {
   card: PropTypes.object.isRequired,
   onclick: PropTypes.func.isRequired,
   disableTitleNavigation: PropTypes.bool,
-  disableButtonComment: PropTypes.bool.isRequired
+  hideCommentIcone: PropTypes.bool
 }
 
 export default PostContainer

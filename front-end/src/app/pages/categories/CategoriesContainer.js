@@ -30,11 +30,15 @@ const CategoriesPage = (props) => {
       const postId = data
       const path = ROUTES.returnPathToPostId(postId)
       props.navigate(path)
+    } else if (action === POST_TYPE_ACTION.SELECT_ORDER_BY_OPTION) {
+      const optionFilter = data || window.alert('** ERROR IN FILTER, BUTTON UNDEFINED')
+      props.dispatch(PostAction.orderBy(optionFilter))
     }
   }
 
   return (
-    <Categories posts={posts} onClicksPost={onClicksCard} />
+    <Categories posts={posts} onClicksPost={onClicksCard} onClicksFilter={onClicksCard}
+    />
   )
 }
 

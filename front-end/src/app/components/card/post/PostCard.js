@@ -84,7 +84,6 @@ const PostCard = ({ onclick, card, cardDate, disableTitleNavigation, hideComment
 PostCard.propTypes = {
   card: PropTypes.object.isRequired,
   onclick: PropTypes.func.isRequired,
-  cardDate: PropTypes.string.isRequired,
   disableTitleNavigation: PropTypes.bool,
   hideCommentIcone: PropTypes.bool
 }

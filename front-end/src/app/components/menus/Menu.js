@@ -91,5 +91,5 @@ MenuOpenByClickInButton.propTypes = {
   button: PropTypes.object.isRequired,
   items: PropTypes.array.isRequired,
   selectOnClick: PropTypes.func.isRequired,
-  cardId: PropTypes.object.isRequired
+  cardId: PropTypes.string.isRequired
 }
