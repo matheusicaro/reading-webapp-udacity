@@ -1,0 +1,55 @@
+{
+  "name": "matheus-project-readings",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "history": "^4.7.2",
+    "lodash": "^4.17.11",
+    "material-ui": "^0.20.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.3.2",
+    "react-dom": "^16.6.3",
+    "react-redux": "^5.0.7",
+    "react-redux-loading": "^1.0.1",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "react-scripts": "^3.0.0",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-promise-middleware": "^5.1.1",
+    "redux-thunk": "^2.2.0",
+    "request-promise": "^4",
+    "uuid": "^3.3.2"
+  },
+  "scripts": {
+    "start": "npm run format && react-scripts start",
+    "build": "npm run format  && react-scripts build",
+    "test": "npm run format  && react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "format": "standard --verbose | snazzy"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "2.1.0",
+    "standard": "^12.0.1",
+    "babel-eslint": "^10.0.1"
+  },
+  "standard": {
+    "ignore": [
+      "node_modules/"
+    ],
+    "parser": "babel-eslint"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
