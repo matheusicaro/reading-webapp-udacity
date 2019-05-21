@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -11,7 +12,7 @@ import { CARD_COMMENT_BUTTONS } from '../../../constants/buttons'
 
 import '../style.css'
 
-const CommentCard = ({ card, onclick, menuDots, buttons, disableButtonComment = false }) => {
+const CommentCard = ({ card, onclick, disableButtonComment = false }) => {
   const cardDate = new Date(card.timestamp)
 
   return (
@@ -62,6 +63,11 @@ const CommentCard = ({ card, onclick, menuDots, buttons, disableButtonComment = 
 
     </Paper>
   )
+}
+
+CommentCard.propTypes = {
+  card: PropTypes.array.isRequired,
+  onclick: PropTypes.func.isRequired
 }
 
 export default CommentCard

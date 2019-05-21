@@ -49,7 +49,7 @@ class PostPage extends Component {
     } else if (action === POST_TYPE_ACTION.DELETE) {
       const postId = data
       this.props.dispatch(PostAction.delete(postId))
-      this.navigateToHome()
+      this.props.navigate(ROUTES.HOME.path)
     } else if (action === POST_TYPE_ACTION.EDIT) {
       const { cardId, update } = data
       this.props.dispatch(PostAction.edit(cardId, update))

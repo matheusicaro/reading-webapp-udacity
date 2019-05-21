@@ -10,6 +10,7 @@
 ********************************/
 
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
@@ -84,4 +85,11 @@ export const MenuOpenByClickInButton = ({
 
     </React.Fragment>
   )
+}
+
+MenuOpenByClickInButton.propTypes = {
+  button: PropTypes.object.isRequired,
+  items: PropTypes.array.isRequired,
+  selectOnClick: PropTypes.func.isRequired,
+  cardId: PropTypes.object.isRequired
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Button from '@material-ui/core/Button'
 import SvgIcon from '@material-ui/core/SvgIcon'
@@ -36,6 +37,12 @@ const style = {
     'margin': '0px 0px',
     'fontStyle': 'initial'
   }
+}
+
+ScoreButton.propTypes = {
+  id: PropTypes.object.isRequired,
+  onclick: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired
 }
 
 export default ScoreButton

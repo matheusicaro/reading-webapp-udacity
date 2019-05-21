@@ -1,13 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import PostCard from './PostCard'
 
 const PostContainer = ({
   card = {},
   onclick,
-  menuDots,
-  buttons,
   disableTitleNavigation = false,
-  disableButtonComment = false
+  hideCommentIcone = false
 }) => {
   const cardDate = new Date(card.timestamp)
 
@@ -16,10 +16,17 @@ const PostContainer = ({
       onclick={onclick}
       card={card}
       cardDate={cardDate}
-      disableButtonComment={disableButtonComment}
+      hideCommentIcone={hideCommentIcone}
       disableTitleNavigation={disableTitleNavigation}
     />
   )
+}
+
+PostContainer.propTypes = {
+  card: PropTypes.object.isRequired,
+  onclick: PropTypes.func.isRequired,
+  disableTitleNavigation: PropTypes.bool,
+  disableButtonComment: PropTypes.bool.isRequired
 }
 
 export default PostContainer

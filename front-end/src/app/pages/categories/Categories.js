@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import NavBar from '../../components/navbar/NavBar'
 import { SelectOptionContainer as FilterByCategories } from '../../components/selects'
@@ -28,6 +29,13 @@ const Categories = (props) => {
 
     </div>
   )
+}
+
+Categories.propTypes = {
+  posts: PropTypes.array.isRequired,
+  onClicksPost: PropTypes.func.isRequired,
+  onClicksFilter: PropTypes.func,
+  categories: PropTypes.func
 }
 
 export default Categories

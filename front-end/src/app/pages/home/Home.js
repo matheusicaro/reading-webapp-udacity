@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import NavBar from '../../components/navbar/NavBar'
 import { PostsDashboard } from '../../components/dashboards'
@@ -29,6 +30,13 @@ const Home = props => {
 
     </div>
   )
+}
+
+Home.propTypes = {
+  posts: PropTypes.array.isRequired,
+  onClicksPost: PropTypes.func.isRequired,
+  onClicksFilter: PropTypes.func.isRequired,
+  categories: PropTypes.func
 }
 
 export default Home

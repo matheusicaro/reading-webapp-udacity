@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -9,9 +10,6 @@ import { CARD_POST_BUTTONS } from '../../../constants/buttons'
 import { POST_TYPE_ACTION } from '../../../../services/actions/post'
 
 import ScoresButton from '../../buttons/ScoresButton'
-
-// TODO DELETAR COMPONENTE CommentButton
-// import CommentButton from '../../buttons/CommentButton'
 
 import '../style.css'
 
@@ -81,6 +79,14 @@ const PostCard = ({ onclick, card, cardDate, disableTitleNavigation, hideComment
 
     </Paper>
   )
+}
+
+PostCard.propTypes = {
+  card: PropTypes.object.isRequired,
+  onclick: PropTypes.func.isRequired,
+  cardDate: PropTypes.string.isRequired,
+  disableTitleNavigation: PropTypes.bool,
+  hideCommentIcone: PropTypes.bool
 }
 
 export default PostCard
