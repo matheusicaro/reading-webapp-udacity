@@ -24,6 +24,39 @@ const defaultData = {
     voteScore: -5,
     deleted: false,
     commentCount: 0
+  },
+    "sdfasff3ym7mf1p33ln23122": {
+    id: 'sdfasff3ym7mf1p33ln23122',
+    timestamp: 1427900769000,
+    title: 'Udacity the bestt!',
+    body: 'I have learned a lot from udacity teaching methods.',
+    author: 'matheusicaro2',
+    category: 'udacity',
+    voteScore: 1,
+    deleted: false,
+    commentCount: 0
+  },
+    "safdsfym7mf1pf232z": {
+    id: 'safdsfym7mf1pf232z',
+    timestamp: 1446970742000,
+    title: 'React is very good',
+    body: 'React it is very easy the learning curve, and it speeds up the construction of applications very easy.',
+    author: 'matheusicaro2',
+    category: 'react',
+    voteScore: 25,
+    deleted: false,
+    commentCount: 0
+  },
+    "12asafym7mf1p332adf": {
+    id: '12asafym7mf1p332adf',
+    timestamp: 1495086511000,
+    title: 'React Hooks, the end for Redux?',
+    body: 'Rumors have surfaced and many in the community have commented, will hooks replace the redux? Is it better to use the react purely? scenes for the next chapters',
+    author: 'matheusicaro2',
+    category: 'redux',
+    voteScore: 0,
+    deleted: false,
+    commentCount: 0
   }
 }
 
