@@ -7,8 +7,8 @@ const App = () => {
   return (
     <Switch>
       <Route exact path={ROUTES.HOME.path} component={ROUTES.HOME.page} />
-      <Route exact path={`${ROUTES.POST.path}/:id`} component={ROUTES.POST.page} />
-      <Route exact path={`${ROUTES.CATEGORIES.path}/:category`} component={ROUTES.CATEGORIES.page} />
+      <Route exact path={`/:category`} component={ROUTES.CATEGORIES.page} />
+      <Route exact path={`/:category/:id`} component={ROUTES.POST.page} />
     </Switch>
   )
 }

@@ -1,10 +1,9 @@
 import request from 'request-promise'
 
 const api = {
-  url: process.env.REACT_APP_API_URL,
-  authorization: process.env.REACT_APP_API_AUTHORIZATION
+  url: 'http://localhost:3001',
+  authorization: 'whatever-you-want'
 }
-
 export const requestApi = {
   get: (options) => request.get(options)
     .then(response => response)

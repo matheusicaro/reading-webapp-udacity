@@ -17,7 +17,7 @@ const PostCard = ({ onclick, card, cardDate, disableTitleNavigation, hideComment
   const getTitleNavigate = () => (
     <span
       className='post-card-title-link'
-      onClick={event => onclick(POST_TYPE_ACTION.NAVIGATE, card.id)}
+      onClick={event => onclick(POST_TYPE_ACTION.NAVIGATE, { id: card.id, category: card.category })}
     >{ card.title }</span>
   )
   return (
@@ -37,6 +37,7 @@ const PostCard = ({ onclick, card, cardDate, disableTitleNavigation, hideComment
           <Menu
             button={CARD_POST_BUTTONS.menu.button}
             items={CARD_POST_BUTTONS.menu.items}
+            placeholder={[ { text: card.title }, { text: card.body } ]}
             selectOnClick={onclick}
             cardId={card.id}
           />

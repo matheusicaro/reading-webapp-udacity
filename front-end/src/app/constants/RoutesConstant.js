@@ -17,5 +17,5 @@ export const ROUTES = {
     path: '/categories',
     page: CategoriesPage
   },
-  returnPathToPostId: (postId) => `/post/${postId}`
+  returnPathToPostId: (postId, category) => `/${category}/${postId}`
 }

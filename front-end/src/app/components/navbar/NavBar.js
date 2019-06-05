@@ -27,7 +27,7 @@ const NavBar = props => {
         <Button
           key={category.name}
           color='inherit'
-          onClick={event => navigate(event, `${ROUTES.CATEGORIES.path}/${category.path}`)}
+          onClick={event => navigate(event, `/${category.path}`)}
         >
           {category.name}
         </Button>
@@ -37,6 +37,7 @@ const NavBar = props => {
 
   const navigate = (event, path) => {
     event.preventDefault()
+    console.log('0000>', path)
     props.navigate(path)
   }
 

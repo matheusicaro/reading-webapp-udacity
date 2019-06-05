@@ -2,13 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Categories from './Categories'
-import { SortBy, DispatchUteis, RouterUtils } from '../../../utils'
+import { SortBy, RouterUtils } from '../../../utils'
 import { POST_TYPE_ACTION, PostAction } from '../../../services/actions/post'
 import { ROUTES } from '../../constants'
 
 const CategoriesPage = (props) => {
   if (props.posts === null) {
-    DispatchUteis.initialDate()
+    props.dispatch(PostAction.initialData)
+    return 'CARREGANDO'
   }
   const { category } = props.match.params
   const posts = SortBy.category(category, props.posts)

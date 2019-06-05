@@ -12,7 +12,8 @@ import { SelectOptionContainer as FilterByCategories } from '../selects'
 
 const formDataDefault = {
   title: 'Title do form Default',
-  formContext: 'Contexto do form Default'
+  formContext: 'Contexto do form Default',
+  data: ''
 }
 
 const FormDialogGeneric = ({
@@ -22,7 +23,7 @@ const FormDialogGeneric = ({
   sendForm,
   formToNewPost = false
 }) => {
-  const { title, formContext, fields } = formData || formDataDefault
+  const { title, formContext, fields } = formData ? ('data' in formData ? formData.data : formData) : formDataDefault
 
   let formDataToBeSent = {}
 
@@ -48,6 +49,18 @@ const FormDialogGeneric = ({
     values: ['React', 'Redux', 'Udacity']
   }
 
+  const getPlaceHouder = (index) => {
+    let value = ''
+
+    if (formData && 'index' in formData) {
+      const { placeholder } = formData
+      if (placeholder !== undefined) {
+        value = placeholder[index].text
+      }
+    }
+    return value
+  }
+
   return (
     <Fragment>
       <Dialog
@@ -60,19 +73,23 @@ const FormDialogGeneric = ({
         <DialogContent>
           <DialogContentText>{formContext}</DialogContentText>
           {fields &&
-            fields.map(field => (
-              <TextField
-                key={field.label}
-                autoFocus
-                margin='dense'
-                id='name'
-                onChange={event =>
-                  incrementValues(field.value, event.target.value)
-                }
-                label={field.label}
-                fullWidth
-              />
-            ))}
+            fields.map((field, index) => {
+              const value = getPlaceHouder(index)
+              return (
+                <TextField
+                  key={field.label}
+                  autoFocus
+                  margin='dense'
+                  id='name'
+                  onChange={event =>
+                    incrementValues(field.value, event.target.value)
+                  }
+                  label={field.label}
+                  value={value}
+                  fullWidth
+                />
+              )
+            })}
 
           <div style={{ marginTop: '5%' }}>
             {formToNewPost && <FilterByCategories onclick={selectCategories} options={filters} />}

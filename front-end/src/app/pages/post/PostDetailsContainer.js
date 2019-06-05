@@ -25,9 +25,20 @@ class PostPage extends Component {
   }
 
   componentWillMount () {
+    this.getPost()
+  }
+
+  componentDidUpdate () {
+    if (this.state.post === null) {
+      this.getPost()
+    }
+  }
+
+  getPost () {
     if (this.props.posts) {
       const { id } = this.props.match.params
       const post = PostDetailsUtils.getPostId(this.props.posts, id)
+      this.getComments(post.id)
       this.setState({ post })
     }
   }
@@ -92,7 +103,6 @@ class PostPage extends Component {
 
     if (post === null || this.props.posts === null) {
       this.initialData()
-      this.props.navigate(ROUTES.HOME.path)
       return <Warnings message={'Loading...'} />
     }
 

@@ -29,6 +29,7 @@ export const MenuOpenByClickInButton = ({
   button = {},
   items = defaultItems,
   selectOnClick = {},
+  placeholder,
   cardId
 }) => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -42,9 +43,9 @@ export const MenuOpenByClickInButton = ({
     setAnchorEl(event.currentTarget)
   }
 
-  const itemHandleClick = item => {
+  const itemHandleClick = (item, index) => {
     if (item.form) {
-      setFormData(item.form.data)
+      setFormData({ data: item.form.data, index: index, placeholder })
       setAction(item.action)
       setFormOpen(!formOpen)
       setMenuOpen(!menuOpen)
@@ -69,8 +70,8 @@ export const MenuOpenByClickInButton = ({
       </Button>
 
       <Menu anchorEl={anchorEl} open={menuOpen} onClose={menuHandleClick}>
-        {items.map(item => (
-          <MenuItem key={item.text} onClick={event => itemHandleClick(item)}>
+        {items.map((item, index) => (
+          <MenuItem key={item.text} onClick={event => itemHandleClick(item, index)}>
             {item.text}
           </MenuItem>
         ))}

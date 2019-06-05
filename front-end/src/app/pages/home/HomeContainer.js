@@ -39,8 +39,7 @@ class HomePage extends Component {
     } else if (action === POST_TYPE_ACTION.EDIT) {
       this.props.dispatch(PostAction.edit(data.cardId, data.update))
     } else if (action === POST_TYPE_ACTION.NAVIGATE) {
-      const postId = data
-      const path = ROUTES.returnPathToPostId(postId)
+      const path = ROUTES.returnPathToPostId(data.id, data.category)
       this.props.navigate(path)
     } else if (action === POST_TYPE_ACTION.SELECT_ORDER_BY_OPTION) {
       const optionFilter = data || window.alert('** ERROR IN FILTER, BUTTON UNDEFINED')
