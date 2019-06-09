@@ -7,7 +7,8 @@ const PostContainer = ({
   card = {},
   onclick,
   disableTitleNavigation = false,
-  hideCommentIcone = false
+  hideCommentIcone = false,
+  home
 }) => {
   const cardDate = new Date(card.timestamp)
 
@@ -18,6 +19,7 @@ const PostContainer = ({
       cardDate={cardDate}
       hideCommentIcone={hideCommentIcone}
       disableTitleNavigation={disableTitleNavigation}
+      home
     />
   )
 }

@@ -5,7 +5,7 @@ export const COMMENTS_TYPE_ACTION = {
     downVote: 'downVote'
   },
   DELETE: 'DELETE',
-  EDIT: 'EDIT',
+  EDIT: 'EDIT_COMMENT',
   GET_BY_ID: 'GET_BY_ID',
   SEND_COMMENTER: 'SEND_COMMENTER',
   CREATE_COMMENT: 'CREATE_COMMENT',

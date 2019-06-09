@@ -3,7 +3,7 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 
-import FormDialogGeneric from '../FormDialog'
+import FormDialogGeneric from '../../FormDialog'
 
 const NewPostForm = ({ menuHandleClick, formOpen, setFormOpen, sendForm }) => {
   const formDataNewPost = {

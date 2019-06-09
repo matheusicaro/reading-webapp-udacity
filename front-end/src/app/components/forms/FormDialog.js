@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { set as setValuesInObject } from 'lodash'
 
 import Button from '@material-ui/core/Button'
@@ -21,8 +21,10 @@ const FormDialogGeneric = ({
   formClose,
   formData = formDataDefault,
   sendForm,
-  formToNewPost = false
+  formToNewPost = false,
+  comment = false
 }) => {
+  const [disabled, setDisabled] = useState(true)
   const { title, formContext, fields } = formData ? ('data' in formData ? formData.data : formData) : formDataDefault
 
   let formDataToBeSent = {}
@@ -34,11 +36,16 @@ const FormDialogGeneric = ({
 
   const incrementValues = (key, value) => {
     setValuesInObject(formDataToBeSent, key, value)
+    isValided()
   }
 
   const selectCategories = (action, optionSelected) => {
     const key = 'category'
+    if (optionSelected === undefined) {
+      return setDisabled(true)
+    }
     setValuesInObject(formDataToBeSent, key, optionSelected)
+    isValided()
   }
 
   const filters = {
@@ -49,18 +56,16 @@ const FormDialogGeneric = ({
     values: ['React', 'Redux', 'Udacity']
   }
 
-  const getPlaceHouder = (index) => {
-    let value = ''
-
-    if (formData && 'index' in formData) {
-      const { placeholder } = formData
-      if (placeholder !== undefined) {
-        value = placeholder[index].text
-      }
+  const isValided = () => {
+    if (formDataToBeSent &&
+      formDataToBeSent.hasOwnProperty('title') &&
+      formDataToBeSent.hasOwnProperty('body') &&
+      formDataToBeSent.hasOwnProperty('author') &&
+      formDataToBeSent.hasOwnProperty('category')
+    ) {
+      setDisabled(false)
     }
-    return value
   }
-
   return (
     <Fragment>
       <Dialog
@@ -74,7 +79,6 @@ const FormDialogGeneric = ({
           <DialogContentText>{formContext}</DialogContentText>
           {fields &&
             fields.map((field, index) => {
-              const value = getPlaceHouder(index)
               return (
                 <TextField
                   key={field.label}
@@ -85,7 +89,6 @@ const FormDialogGeneric = ({
                     incrementValues(field.value, event.target.value)
                   }
                   label={field.label}
-                  value={value}
                   fullWidth
                 />
               )
@@ -100,7 +103,7 @@ const FormDialogGeneric = ({
           <Button onClick={() => formClose()} color='primary'>
             Cancel
           </Button>
-          <Button onClick={sendData} color='primary' >
+          <Button disabled={disabled} onClick={sendData} color='primary' >
             Send
           </Button>
         </DialogActions>

@@ -1,4 +1,4 @@
-import { HomePage, PostPage, CategoriesPage } from '../pages'
+import { HomePage, PostPage, CategoriesPage, NotFound } from '../pages'
 
 export const ROUTES = {
   NAVIGATE: 'NAVIGATE',
@@ -16,6 +16,11 @@ export const ROUTES = {
     title: 'Categories',
     path: '/categories',
     page: CategoriesPage
+  },
+  NOT_FOUND: {
+    title: '404',
+    path: '/error/search-not-found/404',
+    page: NotFound
   },
   returnPathToPostId: (postId, category) => `/${category}/${postId}`
 }

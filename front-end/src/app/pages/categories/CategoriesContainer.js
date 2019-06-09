@@ -28,12 +28,13 @@ const CategoriesPage = (props) => {
       const { cardId, update } = data
       props.dispatch(PostAction.edit(cardId, update))
     } else if (action === POST_TYPE_ACTION.NAVIGATE) {
-      const postId = data
-      const path = ROUTES.returnPathToPostId(postId)
+      const path = ROUTES.returnPathToPostId(data.id, data.category)
       props.navigate(path)
     } else if (action === POST_TYPE_ACTION.SELECT_ORDER_BY_OPTION) {
       const optionFilter = data || window.alert('** ERROR IN FILTER, BUTTON UNDEFINED')
       props.dispatch(PostAction.orderBy(optionFilter))
+    } else if (action === POST_TYPE_ACTION.CREATE_NEW_POST) {
+      props.dispatch(PostAction.createNewPost(data))
     }
   }
 

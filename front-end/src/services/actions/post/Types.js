@@ -5,7 +5,7 @@ export const POST_TYPE_ACTION = {
     downVote: 'downVote'
   },
   DELETE: 'DELETE',
-  EDIT: 'EDIT',
+  EDIT: 'EDIT_POST',
   GET_BY_ID: 'GET_BY_ID',
   CREATE_NEW_POST: 'CREATE_NEW_POST',
   SEND_COMMENTER: 'SEND_COMMENTER',

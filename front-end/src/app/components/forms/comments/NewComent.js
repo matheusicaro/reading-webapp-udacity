@@ -21,6 +21,10 @@ const NewComentForm = ({ onclick }) => {
     setAuthor('')
   }
 
+  const isValid = () => {
+    return inputComment === '' || inputAuthor === ''
+  }
+
   return (
     <div className='container-border'>
 
@@ -41,7 +45,7 @@ const NewComentForm = ({ onclick }) => {
           />
         </FormControl>
 
-        <Button className='button' onClick={handleClick}>
+        <Button disabled={isValid()} className='button' onClick={handleClick}>
           <SvgIcon>
             <path d={send} />
           </SvgIcon>

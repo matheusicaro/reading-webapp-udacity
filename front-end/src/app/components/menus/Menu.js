@@ -18,6 +18,8 @@ import Button from '@material-ui/core/Button'
 import SvgIcon from '@material-ui/core/SvgIcon'
 
 import FormDialogGeneric from '../forms/FormDialog'
+import { EditPost } from '../../components/forms/posts'
+import { EditComment } from '../../components/forms/comments'
 
 const defaultItems = [
   { text: 'element-1 [share]', action: 'share' },
@@ -30,7 +32,10 @@ export const MenuOpenByClickInButton = ({
   items = defaultItems,
   selectOnClick = {},
   placeholder,
-  cardId
+  updateComment,
+  cardId,
+  homePagePostSelected = false,
+  commentsPageCommentsSelected = false
 }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const [formOpen, setFormOpen] = useState(false)
@@ -60,6 +65,14 @@ export const MenuOpenByClickInButton = ({
     selectOnClick(formAction, { cardId, update: data })
   }
 
+  const sendPostSelectedEdit = (action, data) => {
+    selectOnClick(action, data)
+  }
+
+  const sendCommentSelectedEdit = (action, data) => {
+    selectOnClick(action, data)
+  }
+
   return (
     <React.Fragment>
 
@@ -71,18 +84,44 @@ export const MenuOpenByClickInButton = ({
 
       <Menu anchorEl={anchorEl} open={menuOpen} onClose={menuHandleClick}>
         {items.map((item, index) => (
-          <MenuItem key={item.text} onClick={event => itemHandleClick(item, index)}>
+          <MenuItem
+            key={item.text}
+            onClick={event => itemHandleClick(item, index)}
+          >
             {item.text}
           </MenuItem>
         ))}
       </Menu>
 
+      {/*
       <FormDialogGeneric
         formOpen={formOpen}
         formClose={() => setFormOpen(!formOpen)}
         formData={formData}
         sendForm={sendForm}
-      />
+        comment={commentsPageCommentsSelected}
+      /> */}
+
+      { commentsPageCommentsSelected && (
+        <EditComment
+          placeHolder={commentsPageCommentsSelected}
+          formOpen={formOpen}
+          formClose={() => setFormOpen(!formOpen)}
+          sendForm={sendCommentSelectedEdit}
+          updateComment={updateComment}
+          cardId={cardId}
+        />
+      )}
+
+      { homePagePostSelected && (
+
+        <EditPost
+          post={homePagePostSelected}
+          formOpen={formOpen}
+          formClose={() => setFormOpen(!formOpen)}
+          sendForm={sendPostSelectedEdit}
+        />
+      )}
 
     </React.Fragment>
   )

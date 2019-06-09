@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import Paper from '@material-ui/core/Paper'
@@ -13,7 +13,15 @@ import { CARD_COMMENT_BUTTONS } from '../../../constants/buttons'
 import '../style.css'
 
 const CommentCard = ({ card, onclick, disableButtonComment = false }) => {
+  const [ body, setBody ] = useState(false)
+  const [ date, setDate ] = useState(false)
+
   const cardDate = new Date(card.timestamp)
+
+  const updateComment = (body, date) => {
+    setDate(date)
+    setBody(body)
+  }
 
   return (
     <Paper className='card-container' elevation={1}>
@@ -21,7 +29,7 @@ const CommentCard = ({ card, onclick, disableButtonComment = false }) => {
       <div className='title'>
         <span >
           <Typography component='p'>
-          Commented by <b>{card.author}</b> in <i>{cardDate.toLocaleString()}</i>
+          Commented by <b>{card.author}</b> in <i>{ date || cardDate.toLocaleString()}</i>
           </Typography>
         </span>
         <span className='title-button'>
@@ -29,7 +37,10 @@ const CommentCard = ({ card, onclick, disableButtonComment = false }) => {
             button={CARD_COMMENT_BUTTONS.menu.button}
             items={CARD_COMMENT_BUTTONS.menu.items}
             selectOnClick={onclick}
-            cardId={card.id} />
+            updateComment={updateComment}
+            cardId={card.id}
+            commentsPageCommentsSelected={card.body}
+          />
         </span>
       </div>
 
@@ -37,7 +48,7 @@ const CommentCard = ({ card, onclick, disableButtonComment = false }) => {
 
       <div>
         <Typography component='p'>
-          {card.body}
+          { body || card.body}
         </Typography>
       </div>
 
@@ -66,7 +77,7 @@ const CommentCard = ({ card, onclick, disableButtonComment = false }) => {
 }
 
 CommentCard.propTypes = {
-  card: PropTypes.array.isRequired,
+  card: PropTypes.object.isRequired,
   onclick: PropTypes.func.isRequired
 }
 

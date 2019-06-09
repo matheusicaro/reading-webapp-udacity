@@ -37,7 +37,6 @@ const NavBar = props => {
 
   const navigate = (event, path) => {
     event.preventDefault()
-    console.log('0000>', path)
     props.navigate(path)
   }
 

@@ -2,7 +2,7 @@ import { CARD_BUTTON as ACTION_OF_BUTTON } from '../../constants/actions'
 
 const getPostId = (posts, id) => {
   const post = posts.filter(existPostWith => existPostWith[id])
-  return post[0][id]
+  return post.length === 0 ? false : post[0][id]
 }
 
 const updateState = (action, oldPost, data) => {

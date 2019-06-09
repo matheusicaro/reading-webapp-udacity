@@ -1,4 +1,5 @@
 import React from 'react'
+
 import PropTypes from 'prop-types'
 
 import Paper from '@material-ui/core/Paper'
@@ -13,13 +14,16 @@ import ScoresButton from '../../buttons/ScoresButton'
 
 import '../style.css'
 
-const PostCard = ({ onclick, card, cardDate, disableTitleNavigation, hideCommentIcone }) => {
+const PostCard = (props) => {
+  const { onclick, card, cardDate, disableTitleNavigation, hideCommentIcone } = props
+
   const getTitleNavigate = () => (
     <span
       className='post-card-title-link'
       onClick={event => onclick(POST_TYPE_ACTION.NAVIGATE, { id: card.id, category: card.category })}
     >{ card.title }</span>
   )
+
   return (
     <Paper className='card-container' elevation={1}>
 
@@ -40,6 +44,7 @@ const PostCard = ({ onclick, card, cardDate, disableTitleNavigation, hideComment
             placeholder={[ { text: card.title }, { text: card.body } ]}
             selectOnClick={onclick}
             cardId={card.id}
+            homePagePostSelected={{ id: card.id, title: card.title, body: card.body }}
           />
         </div>
       </div>

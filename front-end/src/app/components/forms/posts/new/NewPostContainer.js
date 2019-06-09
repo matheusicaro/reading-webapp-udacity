@@ -3,7 +3,7 @@ import GeneraId from 'uuid'
 import { set as setValuesInObject } from 'lodash'
 
 import NewPost from './NewPost'
-import { POST_TYPE_ACTION } from '../../../../services/actions/post'
+import { POST_TYPE_ACTION } from '../../../../../services/actions/post'
 
 const NewPostFormContainer = (props) => {
   const [formOpen, setFormOpen] = useState(false)

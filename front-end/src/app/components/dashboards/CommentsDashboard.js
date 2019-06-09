@@ -8,6 +8,7 @@ import { sortCommentsByBigScore } from '../../../utils'
 
 const Comments = props => {
   const comments = sortCommentsByBigScore(props.comments)
+
   return (
     <div>
 

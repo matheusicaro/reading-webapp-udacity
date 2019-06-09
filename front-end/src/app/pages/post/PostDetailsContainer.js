@@ -10,13 +10,14 @@ import { CommentsAction, COMMENTS_TYPE_ACTION } from '../../../services/actions/
 import Warnings from '../../components/Warnings'
 
 import PostDetailsUtils from './PostDetailsUtils'
-import { ROUTES } from '../../constants'
+import NotFound from '../notFound/NotFound'
 
 class PostPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      post: null
+      post: null,
+      deletePost: false
     }
   }
 
@@ -29,22 +30,26 @@ class PostPage extends Component {
   }
 
   componentDidUpdate () {
-    if (this.state.post === null) {
+    if (!this.state.deletePost && this.state.post === null) {
       this.getPost()
     }
   }
 
   getPost () {
     if (this.props.posts) {
-      const { id } = this.props.match.params
-      const post = PostDetailsUtils.getPostId(this.props.posts, id)
-      this.getComments(post.id)
-      this.setState({ post })
+      const { post_id } = this.props.match.params // eslint-disable-line
+      const post = PostDetailsUtils.getPostId(this.props.posts, post_id)
+      if (!post) {
+        this.setState({ deletePost: true })
+      } else {
+        this.getComments(post.id)
+        this.setState({ post })
+      }
     }
   }
 
   componentDidMount () {
-    if (this.state.post !== null) {
+    if (!this.state.deletePost && this.state.post !== null) {
       this.getComments(this.state.post.id)
     }
   }
@@ -60,11 +65,12 @@ class PostPage extends Component {
     } else if (action === POST_TYPE_ACTION.DELETE) {
       const postId = data
       this.props.dispatch(PostAction.delete(postId))
-      this.props.navigate(ROUTES.HOME.path)
+      this.setState({ deletePost: true })
     } else if (action === POST_TYPE_ACTION.EDIT) {
-      const { cardId, update } = data
-      this.props.dispatch(PostAction.edit(cardId, update))
-      this.setState(PostDetailsUtils.updateState(action, this.state.post, update))
+      const { title, body } = data
+      const updatePost = { ...this.state.post, title, body }
+      this.setState({ post: updatePost })
+      this.props.dispatch(PostAction.edit(this.state.post.id, data))
     }
   };
 
@@ -99,7 +105,12 @@ class PostPage extends Component {
   }
 
   render () {
-    let { post } = this.state
+    const { post, deletePost } = this.state
+    console.log(deletePost)
+
+    if (deletePost) {
+      return <NotFound />
+    }
 
     if (post === null || this.props.posts === null) {
       this.initialData()

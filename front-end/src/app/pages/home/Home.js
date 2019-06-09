@@ -25,6 +25,7 @@ const Home = props => {
           onClicksPost={props.onClicksPost}
           onClicksFilter={props.onClicksFilter}
           categories={props.categories}
+          home
         />
       </div>
 
