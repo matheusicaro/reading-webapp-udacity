@@ -24,10 +24,9 @@ const FormDialogGeneric = ({
   formToNewPost = false,
   comment = false
 }) => {
+  const [formDataToBeSent, setFormDataToBeSent] = useState({})
   const [disabled, setDisabled] = useState(true)
   const { title, formContext, fields } = formData ? ('data' in formData ? formData.data : formData) : formDataDefault
-
-  let formDataToBeSent = {}
 
   const sendData = event => {
     event.preventDefault()
@@ -35,7 +34,9 @@ const FormDialogGeneric = ({
   }
 
   const incrementValues = (key, value) => {
-    setValuesInObject(formDataToBeSent, key, value)
+    const data = formDataToBeSent
+    setValuesInObject(data, key, value)
+    setFormDataToBeSent(data)
     isValided()
   }
 
@@ -44,7 +45,9 @@ const FormDialogGeneric = ({
     if (optionSelected === undefined) {
       return setDisabled(true)
     }
-    setValuesInObject(formDataToBeSent, key, optionSelected)
+    const data = formDataToBeSent
+    setValuesInObject(data, key, optionSelected)
+    setFormDataToBeSent(data)
     isValided()
   }
 

@@ -42,7 +42,10 @@ class HomePage extends Component {
       const path = ROUTES.returnPathToPostId(data.id, data.category)
       this.props.navigate(path)
     } else if (action === POST_TYPE_ACTION.SELECT_ORDER_BY_OPTION) {
-      const optionFilter = data || window.alert('** ERROR IN FILTER, BUTTON UNDEFINED')
+      if (data === undefined) {
+        return
+      }
+      const optionFilter = data
       this.props.dispatch(PostAction.orderBy(optionFilter))
     } else if (action === POST_TYPE_ACTION.CREATE_NEW_POST) {
       this.props.dispatch(PostAction.createNewPost(data))
