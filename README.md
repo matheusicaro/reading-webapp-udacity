@@ -23,7 +23,6 @@ npm start
 ```
 cd front-end\
 npm install
-ren .env.example .env
 npm start
 ```
 
