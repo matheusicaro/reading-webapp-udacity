@@ -1,8 +1,11 @@
 # MY APP READING UDACITY - v1.0#
 
+My reading is a web application for content and comments. The app allows users to post content in pre-defined categories, comment on their own and other users' posts, and vote on posts and comments. Users can edit and delete posts and comments.
+
+![my-reading-app](https://user-images.githubusercontent.com/29001162/59197573-021faa00-8b68-11e9-9f93-2ecb91425595.png)
+
+
 ## How to build the project
-
-
 
 ### 1. Run Back-End Server
 
@@ -27,3 +30,4 @@ npm start
 ```
 
 Go to http://localhost:3000.
+
