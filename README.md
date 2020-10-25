@@ -2,7 +2,7 @@
 
 My reading is a web application for content and comments. The app allows users to post content in pre-defined categories, comment on their own and other users' posts, and vote on posts and comments. Users can edit and delete posts and comments.
 
-![my-reading-app](https://user-images.githubusercontent.com/29001162/59197573-021faa00-8b68-11e9-9f93-2ecb91425595.png)
+![my-reading-app](https://user-images.githubusercontent.com/29001162/97113580-2121cc00-16ca-11eb-9997-734ccb0c3414.png)
 
 
 ## How to build the project

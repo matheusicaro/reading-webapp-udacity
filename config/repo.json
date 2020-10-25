@@ -1,0 +1,19 @@
+{
+    "backend": {
+        "name": "Node",
+        "color": "#4CAF50",
+        "tags": [
+            "Express",
+            "Jest"
+        ]
+    },
+    "frontend": {
+        "name": "React",
+        "color": "#03A9F4",
+        "tags": [
+            "Redux",
+            "Redux-thunk",
+            "Material-ui v3"
+        ]
+    }
+}
