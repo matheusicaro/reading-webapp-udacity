@@ -1,23 +1,40 @@
 {
-   "backend":[
+  "profile": {
+    "pt": {
+      "kind": "Estudos",
+      "name": "Reading - Um Aplicativo Web como o Twitter para Estudos no Curso da Udacity",
+      "intro": "Reading é um aplicativo da web desenvolvido durante um curso da Udacity para conteúdo e comentários, como um Twitter. O aplicativo permite aos usuários postar conteúdo em categorias predefinidas, comentar sobre suas próprias postagens e as de outros usuários e ainda votar em postagens e comentários. Os usuários podem editar e excluir postagens e comentários."
+    },
+    "en": {
+      "kind": "Studies",
+      "name": "Reading - A Web Application Like Twitter For Studies in Udacity's Course",
+      "intro": "Reading is a web application developed during a Udacity course for content and comments, like a Twitter. The application allows users to post content in predefined categories, comment on their own posts and those of other users, and still vote on posts and comments. Users can edit and delete posts and comments."
+    },
+    "es": {
+      "kind": "Estudios",
+      "name": "Reading: Aplicación Móvil para Estudios con Tarjetas en el Curso de Udacity",
+      "intro": "Reading é um aplicativo da web desenvolvido durante um curso da Udacity para conteúdo e comentários, como um Twitter. O aplicativo permite aos usuários postar conteúdo en categorias predefinidas, comentar sobre susas próprias postagens e as de outros usuários e ainda votar em postagens e comentários. Os usuários podem editar e excluir postagens e comentários."
+    }
+  },
+  "stack": {
+    "backend": [
       {
-         "name":"Node",
-         "color":"#4CAF50",
-         "tags":[
-            "Express",
-            "Jest"
-         ]
+        "name": "Node",
+        "tags": [
+          "Express",
+          "Jest"
+        ]
       }
-   ],
-   "frontend":[
+    ],
+    "frontend": [
       {
-         "name":"React",
-         "color":"#03A9F4",
-         "tags":[
-            "Redux",
-            "Redux-thunk",
-            "Material-ui v3"
-         ]
+        "name": "React",
+        "tags": [
+          "Redux",
+          "Redux-thunk",
+          "Material-ui v3"
+        ]
       }
-   ]
+    ]
+  }
 }
