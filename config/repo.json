@@ -19,8 +19,9 @@
   "stack": {
     "backend": [
       {
-        "name": "Node",
+        "name": "Node.js",
         "tags": [
+          "JavaScript",
           "Express",
           "Jest"
         ]
