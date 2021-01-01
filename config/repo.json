@@ -5,6 +5,11 @@
       "name": "Reading - Um Aplicativo Web Como o Twitter Suas Postagens",
       "intro": "Reading é um aplicativo da web desenvolvido durante um curso da Udacity para conteúdo e comentários, como um Twitter. O aplicativo permite aos usuários postar conteúdo em categorias predefinidas, comentar sobre suas próprias postagens e as de outros usuários e ainda votar em postagens e comentários. Os usuários podem editar e excluir postagens e comentários."
     },
+    "fr": {
+      "kind": "Études",
+      "name": "Reading - Une application Web comme Twitter Vos messages",
+      "intro": "Reading est une application Web développée lors d'un cours Udacity pour le contenu et les commentaires, comme Twitter. L'application permet aux utilisateurs de publier du contenu dans des catégories prédéfinies, de commenter leurs propres publications et celles d'autres utilisateurs, et même de voter sur les publications et les commentaires. Les utilisateurs peuvent modifier et supprimer des publications et des commentaires."
+    },
     "en": {
       "kind": "Studies",
       "name": "Reading - A Web Application Like Twitter For Your Posts",
@@ -20,21 +25,13 @@
     "backend": [
       {
         "name": "Node.js",
-        "tags": [
-          "JavaScript",
-          "Express",
-          "Jest"
-        ]
+        "tags": ["JavaScript", "Express", "Jest"]
       }
     ],
     "frontend": [
       {
         "name": "React",
-        "tags": [
-          "Redux",
-          "Redux-thunk",
-          "Material-ui v3"
-        ]
+        "tags": ["Redux", "Redux-thunk", "Material-ui v3"]
       }
     ]
   }
