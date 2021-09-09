@@ -1,4 +1,5 @@
 # MY APP READING UDACITY - v1.0#
+[![license](https://img.shields.io/github/license/DAVFoundation/captain-n3m0.svg?style=flat-square)](https://github.com/matheusicaro/coderbyte-full-stack-project/blob/master/LICENSE)
 
 My reading is a web application for content and comments. The app allows users to post content in pre-defined categories, comment on their own and other users' posts, and vote on posts and comments. Users can edit and delete posts and comments.
 
