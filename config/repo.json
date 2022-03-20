@@ -21,6 +21,7 @@
       "intro": "Reading é um aplicativo da web desenvolvido durante um curso da Udacity para conteúdo e comentários, como um Twitter. O aplicativo permite aos usuários postar conteúdo en categorias predefinidas, comentar sobre susas próprias postagens e as de outros usuários e ainda votar em postagens e comentários. Os usuários podem editar e excluir postagens e comentários."
     }
   },
+  "tags": ["React", "Node.js", "Redux", "Redux-thunk", "Material-UI", "JavaScript", "Express", "Full-stack", "Back-end", "Front-end"]
   "stack": {
     "backend": [
       {
