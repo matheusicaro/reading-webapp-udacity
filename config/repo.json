@@ -29,7 +29,7 @@
 		}],
 		"frontend": [{
 			"name": "React",
-			"tags": ["Redux", "Redux-thunk", "Material-ui v3"]
+			"tags": ["Redux", "Redux-thunk", "Material-UI"]
 		}]
 	}
 }
